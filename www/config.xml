@@ -6,7 +6,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0">
     <name>CobroYa App</name>
     <description>
-        App para toma de pedidos en linea.
+        App para cobros usando MercadoPago.
     </description>
     <author email="agusrafafer@gmail.com" href="http://agura.com.ar">
         Agura Ing.
