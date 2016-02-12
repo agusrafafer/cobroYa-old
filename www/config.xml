@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.agura.braulito" 
+        version="0.0.1" 
+        xmlns="http://www.w3.org/ns/widgets" 
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        xmlns:gap = "http://phonegap.com/ns/1.0">
+    <name>CobroYa App</name>
+    <description>
+        App para toma de pedidos en linea.
+    </description>
+    <author email="agusrafafer@gmail.com" href="http://agura.com.ar">
+        Agura Ing.
+    </author>
+    <access origin="*"/>
+    <content src="index.html" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
+    <preference name="fullscreen" value="true" />
+    <allow-navigation href="http://*/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    
+    
+    <feature name="InAppBrowser"> 
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser"/>
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" /> 
+    </feature>
+    <feature name="InAppBrowser" />
+    
+    <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" version="0.6.0" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    
+    <preference name="SplashScreen" value="screen"/>
+    <preference name="SplashScreenDelay" value="4000" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    
+    <icon src="mdpi.png" platform="android" qualifier="mdpi" />
+    <icon src="hdpi.png" platform="android" qualifier="hdpi" />
+    <icon src="xhdpi.png" platform="android" qualifier="xhdpi" />
+    <icon src="xxhdpi.png" platform="android" qualifier="xxhdpi" />
+    
+    <gap:splash src="splash-hdpi.png" />
+    
+    <splash src="splash-ldpi.png" platform="android" qualifier="ldpi" />
+    <splash src="splash-mdpi.png" platform="android" qualifier="mdpi" />
+    <splash src="splash-hdpi.png" platform="android" qualifier="hdpi" />
+    <splash src="splash-xhdpi.png" platform="android" qualifier="xhdpi" />
+        
+</widget>
