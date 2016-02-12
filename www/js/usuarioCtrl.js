@@ -10,7 +10,7 @@
 
 
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, noticiaService, $window, $localStorage) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage) {
 
     $scope.prestacionMP = {
         title: "",
@@ -132,44 +132,15 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, notic
         return true;
     };
 
-    $scope.abrirNoticia = function(link) {
-        $window.open(link, "_blank");
-    };
-
-    $scope.proximamente = function() {
-        $scope.ons.notification.alert({
-            title: 'Info',
-            messageHTML: '<strong style=\"color: #25a6d9\">Proximamente</strong>'
-        });
-    };
-
-
-    cargarNoticias();
-
-    function cargarNoticias() {
-        var ancho = ($($window).width() / 2) - 150;
-        ancho = ancho + "px";
-        $("#clima").css({"margin-left": ancho});
-        noticiaService.noticiasRss().success(function(data) {
-            var x2js = new X2JS();
-            if ($scope.noticias === "") {
-                $scope.noticias = x2js.xml_str2json(data);
-                $scope.noticias = $scope.noticias.rss.channel.item;
-                $scope.noticias = $scope.noticias.slice(0, 3);
-            }
-        });
-    }
-    ;
-
 }
 
 
-Onsen.controller('usuarioCtrl', function($scope, usuarioService, usuarioFactory, cobroFactory, noticiaService, $window, $localStorage) {
+Onsen.controller('usuarioCtrl', function($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage) {
     ons.ready(function() {
         usuarioFactory.clientIdMp = $localStorage.clientIdMp;
         usuarioFactory.clientSecretMp = $localStorage.clientSecretMp;
     });
-    usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, noticiaService, $window, $localStorage);
+    usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage);
 });
 
 

@@ -11,7 +11,7 @@
 
     <div class="login-form content-padded" ng-controller="usuarioCtrl">
         <form name="frmCred" novalidate>
-            <div style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
+            <div ng-show="{{!existenCredencialesMP()}}" style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
                          -webkit-border-radius: 4px;color: white;margin-bottom: 10px;
                          padding: 10px; text-align: center">
                 Ingresa con tu usuario de MercadoPago y luego
