@@ -24,7 +24,7 @@
 
             <ons-toolbar>
                 <div class="center">
-                    {{getTituloMenu()}}
+                    <img src="logoCobroYa.png" height="100%">
                 </div>            
             </ons-toolbar>
 
@@ -32,44 +32,20 @@
                 <span ng-controller="usuarioCtrl">
                     <ons-button modifier="large" 
                                 ng-click="abrirMp();"
-                                style="width: 100%; margin-top: 10px;margin-bottom: 10px;">
+                                style="width: 100%; margin-top: 30px;margin-bottom: 10px;background-color: #5cb85c">
                         <ons-icon icon="ion-ribbon-b"></ons-icon>
                         Obtener Credenciales
                     </ons-button>
-                    <ons-button modifier="large" 
+                    <ons-button modifier="large--cta" 
                                 ng-click="app.navigator.pushPage('cobrar.html')"
                                 style="width: 100%; margin-top: 10px;margin-bottom: 10px;">
                         <ons-icon icon="ion-card"></ons-icon>
                         Cobrar
                     </ons-button>
-                    
-                    <ons-row class="row ons-row-inner" style="text-align: center;margin-left: auto;padding-right: 10px;">
-                        <ons-col class="col ons-col-inner" style="margin-left: 10px;">
-                            <ons-list class="plan-list">
-                                <ons-list-item modifier="chevron" class="plan" ng-repeat="noti in noticias" ng-click="abrirNoticia(noti.link)">
-                                    <ons-row>
-                                        <ons-col width="80px" class="plan-left">
-                                            <div class="plan-date">
-                                                <span>{{formatDate(noti.pubDate) | date:'h:mm a'}}</span>
-                                            </div>
-                                        </ons-col>
 
-                                        <ons-col width="6px" class="plan-center" ng-style="{backgroundColor: '#3399ff'}">
-                                        </ons-col>
+                    <img src="bannerMercadoPagoChico.jpg" style="border-radius: 4px;
+                         -webkit-border-radius: 4px;margin-bottom: 10px;margin-top: 40px">
 
-                                        <ons-col class="plan-right">
-                                            <div class="plan-name"></div>
-
-                                            <div class="plan-info">
-                                                {{noti.title.__cdata}}
-                                            </div>
-                                        </ons-col>
-                                    </ons-row>
-                                </ons-list-item>
-
-                            </ons-list>
-                        </ons-col>
-                    </ons-row>
                     <ons-row class="row ons-row-inner" style="margin-left: 10px;padding-right: 10px;">
                         <ons-col class="col ons-col-inner">
                             <div style="text-align: center;margin-top: 25px;margin-bottom: 10px; color: #9c9c9c">

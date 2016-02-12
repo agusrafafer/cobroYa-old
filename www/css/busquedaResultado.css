@@ -5,8 +5,8 @@
 }
 
 .thumbnail {
-  width: 80px;
-  height: 80px;
+  /* width: 80px; */
+  /* height: 80px; */
   border-radius: 4px;
   -webkit-border-radius: 4px;
 }

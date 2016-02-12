@@ -11,11 +11,19 @@
 
     <div class="login-form content-padded" ng-controller="usuarioCtrl">
         <form name="frmCred" novalidate>
+            <div style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
+                         -webkit-border-radius: 4px;color: white;margin-bottom: 10px;
+                         padding: 10px; text-align: center">
+                Ingresa con tu usuario de MercadoPago y luego
+                copia y pega los datos de <b>Client_id</b> y <b>Client_secret</b>
+                m&aacute;s abajo.
+            </div>
             <ons-row align="top" style="margin-bottom: 10px;" ng-show="{{!existenCredencialesMP()}}">
                 <ons-col>
                     <object type="text/html" 
                             data="https://www.mercadopago.com/mla/herramientas/aplicaciones" 
-                            style="width:100%; height:450px">
+                            style="width:100%; height:450px;border-radius: 4px;
+                         -webkit-border-radius: 4px;margin-bottom: 10px;">
                     </object>
                 </ons-col>
             </ons-row>
