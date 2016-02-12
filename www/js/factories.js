@@ -25,8 +25,8 @@ Onsen.factory('cobroFactory', function() {
 
 Onsen.factory('wsFactory', function() {
     return {
-//        url: "http://braulito-agura.rhcloud.com/braulito/webresources"
-        url: "http://localhost:8084/PruebaMercadoPago/webresources"
+        url: "http://cobroya-aguraing.rhcloud.com/cobroYa/webresources"
+//        url: "http://localhost:8084/cobroYa/webresources"
     };
 });
 
