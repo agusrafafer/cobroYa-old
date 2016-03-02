@@ -11,7 +11,7 @@ Onsen.service('usuarioService', function($http, $q, wsFactory) {
         var defered = $q.defer();
         var promise = defered.promise;
         
-        var parametros = 'cid=' + clientIdMp + '&secret=' + clientSecretMp + '&title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&sb=1';
+        var parametros = 'cid=' + clientIdMp + '&secret=' + clientSecretMp + '&title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&sb=0';
         $http.get(wsFactory.url + 'InitPoint?' + parametros)
                 .success(function(data) {
                     defered.resolve(data);
