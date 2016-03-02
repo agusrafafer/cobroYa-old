@@ -33,11 +33,10 @@
                     <label for="title">Id: </label>
                 </ons-col>
                 <ons-col align="left">
-                    <span style="font-weight: bold" ng-show="{{existenCredencialesMP()}}">{{getUsuarioFactory().clientIdMp}}</span>
                     <input type="text" class="text-input"
                            name="client_id"  placeholder="Pega aqu&iacute; el Client_id de MercadoPago" 
-                           ng-show="{{!existenCredencialesMP()}}"
-                           ng-model="getUsuarioFactory().clientIdMp" required style="width: 100%;">
+                           ng-model="getUsuarioFactory().clientIdMp" required style="width: 100%;"
+                           ng-disabled="{{existenCredencialesMP()}}"/>
                 </ons-col>
             </ons-row>
 
@@ -46,11 +45,10 @@
                     <label for="title">Secret: </label>
                 </ons-col>
                 <ons-col align="left">
-                    <span style="font-weight: bold" ng-show="{{existenCredencialesMP()}}">{{getUsuarioFactory().clientSecretMp}}</span>
                     <input type="text" class="text-input"
                            name="client_secret"  placeholder="Pega aqu&iacute; el Client_secret de MercadoPago" 
-                           ng-show="{{!existenCredencialesMP()}}"
-                           ng-model="getUsuarioFactory().clientSecretMp" required style="width: 100%;">
+                           ng-model="getUsuarioFactory().clientSecretMp" required style="width: 100%;"
+                           ng-disabled="{{existenCredencialesMP()}}"/>
                 </ons-col>
             </ons-row>
 
