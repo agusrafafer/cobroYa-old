@@ -41,7 +41,7 @@
             <br><br>
             <ons-button modifier="large" class="login-button" 
                         style="background-color: tomato;"
-                        ng-click="abrirInitiPoint()"
+                        ng-click="abrirInitiPoint(); app.navigator.resetToPage('main.html');"
                         >
                 <ons-icon icon="ion-checkmark-round"></ons-icon>
                 Confirmar

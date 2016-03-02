@@ -25,8 +25,8 @@ Onsen.factory('cobroFactory', function() {
 
 Onsen.factory('wsFactory', function() {
     return {
-        url: "http://cobroya-aguraing.rhcloud.com/cobroYaWs/webresources"
-//        url: "http://localhost:8084/cobroYa/webresources"
+//        url: "http://cobroya-aguraing.rhcloud.com/cobroYaWs/webresources"
+        url: "http://localhost:8080/cobroYaWs/"
     };
 });
 

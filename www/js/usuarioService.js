@@ -11,8 +11,8 @@ Onsen.service('usuarioService', function($http, $q, wsFactory) {
         var defered = $q.defer();
         var promise = defered.promise;
         
-        var parametros = clientIdMp + 'çç' + clientSecretMp + 'çç' + titleMp + 'çç' + cantMp + 'çç' + precMp;
-        $http.get(wsFactory.url + '/com.agura.datos.cobro/initpoint/' + parametros)
+        var parametros = 'cid=' + clientIdMp + '&secret=' + clientSecretMp + '&title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&sb=1';
+        $http.get(wsFactory.url + 'InitPoint?' + parametros)
                 .success(function(data) {
                     defered.resolve(data);
                 })
