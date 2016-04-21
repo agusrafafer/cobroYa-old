@@ -9,7 +9,8 @@ Onsen.factory('usuarioFactory', function() {
         usuario: "",
         tituloMenu: "Cobro Ya",
         clientIdMp: "",
-        clientSecretMp: ""
+        clientSecretMp: "",
+        auth: {}
     };
 });
 
@@ -25,8 +26,10 @@ Onsen.factory('cobroFactory', function() {
 
 Onsen.factory('wsFactory', function() {
     return {
-        url: "http://204.197.242.154:8080/cobroYaWs/"
+//        url: "http://204.197.242.154:8080/cobroYaWs/"
 //        url: "http://localhost:8080/cobroYaWs/"
+url: "http://localhost/cobroYa/ws/"
+//url: "https://www.aguraing.com.ar/cobroYa/ws/"
     };
 });
 

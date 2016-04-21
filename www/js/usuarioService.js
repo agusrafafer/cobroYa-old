@@ -6,13 +6,14 @@
 
 Onsen.service('usuarioService', function($http, $q, wsFactory) {
 
-    this.initPointMP = function(clientIdMp, clientSecretMp, titleMp, cantMp, precMp) {
+    this.initPointMP = function(titleMp, cantMp, precMp, authToken) {
         //defered = diferido (asincrono)
         var defered = $q.defer();
         var promise = defered.promise;
         
-        var parametros = 'cid=' + clientIdMp + '&secret=' + clientSecretMp + '&title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&sb=0';
-        $http.get(wsFactory.url + 'InitPoint?' + parametros)
+        var parametros = 'title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&auth=' + authToken;
+        console.log(wsFactory.url + 'InitPoint.php?' + parametros);
+        $http.get(wsFactory.url + 'InitPoint.php?' + parametros)
                 .success(function(data) {
                     defered.resolve(data);
                 })
@@ -22,6 +23,23 @@ Onsen.service('usuarioService', function($http, $q, wsFactory) {
 
         return promise;
     };  
+    
+    this.refreshAuth = function(refreshToken) {
+        //defered = diferido (asincrono)
+        var defered = $q.defer();
+        var promise = defered.promise;
+        var parametros = 'refreshToken=' + refreshToken;
+        //$http.post(wsFactory.url + 'AuthCustomer.php', {refreshToken: refreshToken})
+        $http.get(wsFactory.url + 'AuthCustomer.php?' + parametros)
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(data, status) {
+                    defered.reject(data, status);
+                });
+
+        return promise;
+    };
 
     this.redondearNumero = function(numero) {
         var decimals = 2;
