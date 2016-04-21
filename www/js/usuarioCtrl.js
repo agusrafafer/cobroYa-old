@@ -67,14 +67,14 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
             } else {
                 $scope.modal.hide();
                 $scope.ons.notification.alert({
-                title: 'Info',
-                messageHTML: '<strong style=\"color: #ff3333\">Para poder operar primero debes obtener tu autorización de MercadoPago</strong>'
-            });
+                    title: 'Info',
+                    messageHTML: '<strong style=\"color: #ff3333\">' + verifTTL + '</strong>'
+                });
             }
         } else {
             $scope.ons.notification.alert({
                 title: 'Info',
-                messageHTML: '<strong style=\"color: #ff3333\">' + verifTTL + '</strong>'
+                messageHTML: '<strong style=\"color: #ff3333\">Para poder operar primero debes obtener tu autorización de MercadoPago</strong>'
             });
         }
     };
@@ -84,6 +84,7 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
     };
 
     $scope.verificarTTLAuth = function() {
+        usuarioFactory.auth = $localStorage.auth;
         var expires_in = usuarioFactory.auth.expires_in;
         var now = Date.now();
         var authDate = $localStorage.authDate;
@@ -97,7 +98,8 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
                     .then(function(data) {
                         var respuesta = data.respuesta;
                         if (respuesta === 'OK') {
-                            usuarioFactory.auth = data.contenido;
+                            usuarioFactory.auth = angular.fromJson(data.contenido);
+                            $scope.guardarAutorizacionMP();
                             return 'OK';
                         } else {
                             return data.contenido;
@@ -175,7 +177,8 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
                         .then(function(data) {
                             var respuesta = data.respuesta;
                             if (respuesta === 'OK') {
-                                usuarioFactory.auth = data.contenido;
+                                usuarioFactory.auth = angular.fromJson(data.contenido);
+                                $scope.guardarAutorizacionMP();
                             } else {
                                 $scope.modal.hide();
                                 $scope.ons.notification.alert({
