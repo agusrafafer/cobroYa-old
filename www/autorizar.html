@@ -1,4 +1,4 @@
-<ons-page on-device-backbutton="app.navigator.popPage()" ng-controller="usuarioCtrl" ng-init="loadIframe()">
+<ons-page on-device-backbutton="app.navigator.popPage()" ng-controller="usuarioCtrl" ng-init="loadIframeMP()">
 
     <ons-toolbar>
         <div class="left">
@@ -11,59 +11,26 @@
 
     <div class="login-form content-padded">
         <form name="frmCred" novalidate>
-            <div ng-show="{{!existenCredencialesMP()}}" style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
+            <div ng-show="{{!existeAutorizacionMP()}}" style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
                  -webkit-border-radius: 4px;color: white;margin-bottom: 10px;
                  padding: 10px; text-align: center">
-                Ingresa con tu usuario de MercadoPago y luego
-                copia y pega los datos de <b>Client_id</b> y <b>Client_secret</b>
-                m&aacute;s abajo.
+                Ingresa con tu usuario de MercadoPago y aguarda un momento por la autorizaci&oacute;n.
             </div>
-            <ons-row align="top" style="margin-bottom: 10px;" ng-show="{{!existenCredencialesMP()}}">
+            <ons-row align="top" style="margin-bottom: 10px;" ng-show="{{!existeAutorizacionMP()}}">
                 <ons-col>
                     <iframe id="iframe1" src="https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php"
                             style="width:100%; height:450px;border-radius: 4px;
                             -webkit-border-radius: 4px;margin-bottom: 10px;"
                             />
-                    <!--<object type="text/html" 
-                            data="https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php" 
-                            style="width:100%; height:450px;border-radius: 4px;
-                         -webkit-border-radius: 4px;margin-bottom: 10px;"
-                         onended="alert('HOLA');">
-                    </object>-->
                 </ons-col>
             </ons-row>
-
-            <ons-row align="top" style="margin-bottom: 10px;">
-                <ons-col align="center" width="100px">
-                    <label for="title">Id: </label>
-                </ons-col>
-                <ons-col align="left">
-                    <input type="text" class="text-input"
-                           name="client_id"  placeholder="Pega aqu&iacute; el Client_id de MercadoPago" 
-                           ng-model="getUsuarioFactory().clientIdMp" required style="width: 100%;"
-                           ng-disabled="{{existenCredencialesMP()}}"/>
-                </ons-col>
-            </ons-row>
-
-            <ons-row align="top" style="margin-bottom: 10px;">
-                <ons-col align="center" width="100px">
-                    <label for="title">Secret: </label>
-                </ons-col>
-                <ons-col align="left">
-                    <input type="text" class="text-input"
-                           name="client_secret"  placeholder="Pega aqu&iacute; el Client_secret de MercadoPago" 
-                           ng-model="getUsuarioFactory().clientSecretMp" required style="width: 100%;"
-                           ng-disabled="{{existenCredencialesMP()}}"/>
-                </ons-col>
-            </ons-row>
-
 
 
             <br><br>
             <ons-row align="top" style="margin-bottom: 10px;">
                 <ons-col align="center">
                     <ons-button class="login-button" 
-                                ng-click="guardarCredencialesMP()"
+                                ng-click="guardarAutorizacionMP()"
                                 ng-disabled="!frmCred.$valid"
                                 style="margin-right: 10px;"
                                 >
@@ -73,7 +40,7 @@
                 </ons-col>
                 <ons-col align="center">
                     <ons-button class="login-button" 
-                                ng-click="borrarCredencialesMP()"
+                                ng-click="borrarAutorizacionMP()"
                                 style="background-color: tomato;margin-left: 10px;"
                                 >
                         <ons-icon icon="ion-close-round"></ons-icon>

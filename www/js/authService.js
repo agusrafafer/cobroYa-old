@@ -9,7 +9,7 @@ Onsen.service('authService', function($http, $q, $timeout, wsFactory) {
     var timer;
     
     this.iniciarTimer = function() {
-        timer = $timeout(wrapper(), 5000);
+        timer = $timeout(wrapper(), 500000);
     };  
     
     this.mostrarTimer = function() {
@@ -19,7 +19,7 @@ Onsen.service('authService', function($http, $q, $timeout, wsFactory) {
     function wrapper() {
         $timeout.cancel(timer);
         contar();
-        $timeout(wrapper, 5000);
+        $timeout(wrapper, 500000);
     };
     
     function contar() {
