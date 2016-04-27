@@ -206,14 +206,14 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
 }
 
 
-Onsen.controller('usuarioCtrl', function($scope, usuarioService, authService, usuarioFactory, cobroFactory, $window, $localStorage, $interval) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'authService', 'usuarioFactory', 'cobroFactory', '$window', '$localStorage', '$interval', function($scope, usuarioService, authService, usuarioFactory, cobroFactory, $window, $localStorage, $interval) {
     ons.ready(function() {
         usuarioFactory.clientIdMp = $localStorage.clientIdMp;
         usuarioFactory.clientSecretMp = $localStorage.clientSecretMp;
         //authService.iniciarTimer();
     });
     usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroFactory, $window, $localStorage, $interval);
-});
+}]);
 
 
 

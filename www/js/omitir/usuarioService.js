@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-Onsen.service('usuarioService', function($http, $q, wsFactory) {
+Onsen.service('usuarioService', ['$http', '$q', 'wsFactory', function($http, $q, wsFactory) {
 
     this.initPointMP = function(titleMp, cantMp, precMp, authToken) {
         //defered = diferido (asincrono)
@@ -12,7 +12,7 @@ Onsen.service('usuarioService', function($http, $q, wsFactory) {
         var promise = defered.promise;
         
         var parametros = 'title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&auth=' + authToken;
-        console.log(wsFactory.url + 'InitPoint.php?' + parametros);
+//        console.log(wsFactory.url + 'InitPoint.php?' + parametros);
         $http.get(wsFactory.url + 'InitPoint.php?' + parametros)
                 .success(function(data) {
                     defered.resolve(data);
@@ -56,5 +56,5 @@ Onsen.service('usuarioService', function($http, $q, wsFactory) {
         return intPart;
     };
 
-});
+}]);
 
