@@ -49,8 +49,6 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="SplashScreenDelay" value="4000" />
     <preference name="show-splash-screen-spinner" value="true" />
-
-   <property name="aapt.ignore.assets" value="&lt;dir&gt;omitir:!.js:*~" />
     
     <icon src="mdpi.png" platform="android" qualifier="mdpi" />
     <icon src="hdpi.png" platform="android" qualifier="hdpi" />

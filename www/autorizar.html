@@ -7,14 +7,14 @@
                 </ons-icon>
             </ons-toolbar-button>
         </div>
-        <div class="center">Tu autizaci&oacute;n de MercadoPago</div>
+        <div class="center">Tu autorizaci&oacute;n de MercadoPago</div>
     </ons-toolbar>
 
 
 
     <div class="login-form content-padded">
         <form name="frmCred" novalidate>
-            <div ng-show="{{!existeAutorizacionMP()}}" style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
+            <div id="divAvisoIni" ng-show="{{!existeAutorizacionMP()}}" style="background-color: #4cd964;border-radius: 4px;
                  -webkit-border-radius: 4px;color: white;margin-bottom: 10px;
                  padding: 10px; text-align: center">
                 Ingresa con tu usuario de MercadoPago y aguarda un momento por la autorizaci&oacute;n.
