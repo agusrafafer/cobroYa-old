@@ -80,7 +80,7 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
     };
 
     $scope.abrirInitiPoint = function() {
-        $window.open(cobroFactory.initPoint, "_blank", "location=no,clearsessioncache=yes");
+        $window.open(cobroFactory.initPoint, "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
     };
 
     $scope.verificarTTLAuth = function() {
