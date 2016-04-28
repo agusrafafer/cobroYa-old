@@ -29,7 +29,8 @@ Onsen.factory('wsFactory', function() {
 //        url: "http://204.197.242.154:8080/cobroYaWs/"
 //        url: "http://localhost:8080/cobroYaWs/"
 //url: "http://localhost/cobroYa/ws/"
-url: "https://www.aguraing.com.ar/cobroYa/ws/"
+        la: "https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php",
+        l: "https://www.aguraing.com.ar/cobroYa/ws/"
     };
 });
 

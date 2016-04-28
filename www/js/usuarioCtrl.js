@@ -80,7 +80,7 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
     };
 
     $scope.abrirInitiPoint = function() {
-        $window.open(cobroFactory.initPoint, "_blank");
+        $window.open(cobroFactory.initPoint, "_blank", "location=no,clearsessioncache=yes");
     };
 
     $scope.verificarTTLAuth = function() {
@@ -138,7 +138,6 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
     };
 
     $scope.abrirMp = function() {
-        //$window.open("https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php", "_blank");
         $scope.app.navigator.pushPage("autorizar.html");
     };
 
@@ -163,57 +162,68 @@ function usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroF
     };
 
     $scope.loadIframeMP = function() {
-        var eventMethod = $window.addEventListener ? "addEventListener" : "attachEvent";
-        var eventer = $window[eventMethod];
-        var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
+        if (!$scope.existeAutorizacionMP()) {
 
-        //Escuchando el mensaje enviado desde la pagina contenida en el iframe
-        //que devuelve la autorizacion de mercaopago
-        eventer(messageEvent, function(e) {
-            if (e.data.respuesta === 'OK') {
-                var contenido = angular.fromJson(e.data.contenido);
-                usuarioFactory.auth = contenido;
-                usuarioService.refreshAuth(usuarioFactory.auth.refresh_token)
-                        .then(function(data) {
-                            var respuesta = data.respuesta;
-                            if (respuesta === 'OK') {
-                                usuarioFactory.auth = angular.fromJson(data.contenido);
-                                $scope.guardarAutorizacionMP();
-                            } else {
-                                $scope.modal.hide();
+            var eventMethod = $window.addEventListener ? "addEventListener" : "attachEvent";
+            var eventer = $window[eventMethod];
+            var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
+
+            //Escuchando el mensaje enviado desde la pagina contenida en el iframe
+            //que devuelve la autorizacion de mercaopago
+            eventer(messageEvent, function(e) {
+                if (e.data.respuesta === 'OK') {
+                    var contenido = angular.fromJson(e.data.contenido);
+                    usuarioFactory.auth = contenido;
+                    usuarioService.refreshAuth(usuarioFactory.auth.refresh_token)
+                            .then(function(data) {
+                                var respuesta = data.respuesta;
+                                if (respuesta === 'OK') {
+                                    usuarioFactory.auth = angular.fromJson(data.contenido);
+                                    $scope.guardarAutorizacionMP();
+
+                                    $scope.ons.notification.alert({
+                                        title: 'Info',
+                                        messageHTML: '<strong style=\"color: #ff3333\">Felicidades ya estas autorizado y puedes comenzar a cobrar</strong>',
+                                        callback: function() {
+                                            $scope.app.navigator.popPage();
+                                        }
+                                    });
+
+                                } else {
+                                    $scope.ons.notification.alert({
+                                        title: 'Info',
+                                        messageHTML: '<strong style=\"color: #ff3333\">' + data.contenido + '</strong>'
+                                    });
+                                }
+                            })
+                            .catch(function(data, status) {
+                                var mensaje = "No autorizado.";
+                                switch (status) {
+                                    case 401:
+                                        mensaje = "No autorizado.";
+                                        break;
+                                }
                                 $scope.ons.notification.alert({
                                     title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">' + data.contenido + '</strong>'
+                                    messageHTML: '<strong style=\"color: #ff3333\">Operación denegada: ' + mensaje + '</strong>'
                                 });
-                            }
-                        })
-                        .catch(function(data, status) {
-                            var mensaje = "No autorizado.";
-                            switch (status) {
-                                case 401:
-                                    mensaje = "No autorizado.";
-                                    break;
-                            }
-                            $scope.ons.notification.alert({
-                                title: 'Info',
-                                messageHTML: '<strong style=\"color: #ff3333\">Operación denegada: ' + mensaje + '</strong>'
                             });
-                        });
-            }
-        }, false);
+                }
+            }, false);
+        }
     };
 
 }
 
 
 Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'authService', 'usuarioFactory', 'cobroFactory', '$window', '$localStorage', '$interval', function($scope, usuarioService, authService, usuarioFactory, cobroFactory, $window, $localStorage, $interval) {
-    ons.ready(function() {
-        usuarioFactory.clientIdMp = $localStorage.clientIdMp;
-        usuarioFactory.clientSecretMp = $localStorage.clientSecretMp;
-        //authService.iniciarTimer();
-    });
-    usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroFactory, $window, $localStorage, $interval);
-}]);
+        ons.ready(function() {
+            usuarioFactory.clientIdMp = $localStorage.clientIdMp;
+            usuarioFactory.clientSecretMp = $localStorage.clientSecretMp;
+            //authService.iniciarTimer();
+        });
+        usuarioCtrl($scope, usuarioService, authService, usuarioFactory, cobroFactory, $window, $localStorage, $interval);
+    }]);
 
 
 

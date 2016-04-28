@@ -12,8 +12,7 @@ Onsen.service('usuarioService', ['$http', '$q', 'wsFactory', function($http, $q,
         var promise = defered.promise;
         
         var parametros = 'title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&auth=' + authToken;
-//        console.log(wsFactory.url + 'InitPoint.php?' + parametros);
-        $http.get(wsFactory.url + 'InitPoint.php?' + parametros)
+        $http.get(wsFactory.l + 'InitPoint.php?' + parametros)
                 .success(function(data) {
                     defered.resolve(data);
                 })
@@ -29,8 +28,7 @@ Onsen.service('usuarioService', ['$http', '$q', 'wsFactory', function($http, $q,
         var defered = $q.defer();
         var promise = defered.promise;
         var parametros = 'refreshToken=' + refreshToken;
-        //$http.post(wsFactory.url + 'AuthCustomer.php', {refreshToken: refreshToken})
-        $http.get(wsFactory.url + 'AuthCustomer.php?' + parametros)
+        $http.get(wsFactory.l + 'AuthCustomer.php?' + parametros)
                 .success(function(data) {
                     defered.resolve(data);
                 })

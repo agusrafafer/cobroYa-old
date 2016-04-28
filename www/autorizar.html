@@ -7,17 +7,7 @@
                 </ons-icon>
             </ons-toolbar-button>
         </div>
-        <div class="center">Tus Credenciales de MercadoPago</div>
-        <!--<div class="right">
-            <ons-toolbar-button ng-click="borrarAutorizacionMP()">
-                <ons-icon icon="ion-close-round" style="font-size: 28px;" fixed-width="false">
-                </ons-icon>
-            </ons-toolbar-button>
-            <ons-toolbar-button ng-click="guardarAutorizacionMP()">
-                <ons-icon icon="ion-checkmark-round" style="font-size: 28px;" fixed-width="false">
-                </ons-icon>
-            </ons-toolbar-button>
-        </div>-->
+        <div class="center">Tu autizaci&oacute;n de MercadoPago</div>
     </ons-toolbar>
 
 
@@ -31,12 +21,19 @@
             </div>
             <ons-row align="top" style="margin-bottom: 10px;" ng-show="{{!existeAutorizacionMP()}}">
                 <ons-col>
-                    <iframe id="iframe1" src="https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php"
+                    <iframe id="iframe1" 
+                            src="https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php"
                             style="width:100%; height:450px;border-radius: 4px;
                             -webkit-border-radius: 4px;margin-bottom: 10px;"
                             ></iframe>
                 </ons-col>
             </ons-row>
+            
+            <div ng-show="{{existeAutorizacionMP()}}" style="background-color: rgba(255, 99, 71, 0.8);border-radius: 4px;
+                 -webkit-border-radius: 4px;color: white;margin-bottom: 10px;
+                 padding: 10px; text-align: center">
+                Ya estas autorizado y puedes cobrar con la aplicaci&oacute;n.
+            </div>
         </form>
     </div>
 
