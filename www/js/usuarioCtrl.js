@@ -46,8 +46,6 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.generarInitPoint = function () {
-        $scope.crearModalEnRunTime();
-        $scope.modal.show();
         usuarioService.initPointMP($scope.prestacionMP.title, $scope.prestacionMP.cant, $scope.prestacionMP.prec, usuarioFactory.auth.access_token)
                 .then(function (data) {
                     var respuesta = data.respuesta;
@@ -68,7 +66,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                 })
                 .catch(function (data, status) {
                     $scope.modal.hide();
-                    var mensaje = "No autorizado.";
+                    var mensaje = "Excepción inesperada.";
                     switch (status) {
                         case 401:
                             mensaje = "No autorizado.";
@@ -76,12 +74,14 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                     }
                     $scope.ons.notification.alert({
                         title: 'Info',
-                        messageHTML: '<strong style=\"color: #ff3333\">Operación denegada: ' + mensaje + '</strong>'
+                        messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
                     });
                 });
     };
 
     $scope.verificarTTLAuth = function () {
+        $scope.crearModalEnRunTime();
+        $scope.modal.show();
         usuarioFactory.auth = $localStorage.auth;
         var expires_in = usuarioFactory.auth.expires_in;
         var now = Date.now();
@@ -101,17 +101,26 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                             //Aqui se genera realmente el initpoint
                             $scope.generarInitPoint();
                         } else {
-                            return data.contenido;
+                            $scope.modal.hide();
+                            var mensaje = "No se pudo generar la autorización de MercadoPago";
+                            $scope.ons.notification.alert({
+                                title: 'Info',
+                                messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
+                            });
                         }
                     })
                     .catch(function (data, status) {
-                        var mensaje = "No autorizado.";
+                        $scope.modal.hide();
+                        var mensaje = "Excepción inesperada.";
                         switch (status) {
                             case 401:
                                 mensaje = "No autorizado.";
                                 break;
                         }
-                        return mensaje;
+                        $scope.ons.notification.alert({
+                            title: 'Info',
+                            messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
+                        });
                     });
 
         } else {
@@ -192,7 +201,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                                 }
                             })
                             .catch(function (data, status) {
-                                var mensaje = "No autorizado.";
+                                var mensaje = "Excepción inesperada.";
                                 switch (status) {
                                     case 401:
                                         mensaje = "No autorizado.";
@@ -200,7 +209,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                                 }
                                 $scope.ons.notification.alert({
                                     title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">Operación denegada: ' + mensaje + '</strong>'
+                                    messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
                                 });
                             });
                 }
