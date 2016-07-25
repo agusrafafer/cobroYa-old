@@ -1,5 +1,5 @@
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore, $webSql) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql) {
 
     $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
@@ -87,8 +87,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
             usuarioFactory.authDate = dateAuth;
             var expires_in = usuarioFactory.auth.expires_in;
             var now = Date.now();
-            var authDate = $cookieStore.get('authDate');
-            var rest = now - authDate;
+            var rest = now - dateAuth;
 
             //La fecha actual - la fecha en que guarde la autorizacion
             //debe ser menor sino debo volver a solicitar el token
@@ -247,7 +246,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 ;
 
 
-Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$localStorage', '$cookieStore', '$webSql', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore, $webSql) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql) {
         ons.ready(function () {
             $scope.db.createTable('authmeli', {
                 "id": {
@@ -280,7 +279,7 @@ Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', '
             });
 
         });
-        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore, $webSql);
+        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql);
     }]);
 
 
