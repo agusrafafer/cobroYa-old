@@ -71,10 +71,10 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     $scope.verificarTTLAuth = function () {
         $scope.crearModalEnRunTime();
         $scope.modal.show();
-        usuarioFactory.auth = $localStorage.auth;
+        usuarioFactory.auth = JSON.parse($cookieStore.get('auth'));
         var expires_in = usuarioFactory.auth.expires_in;
         var now = Date.now();
-        var authDate = $localStorage.authDate;
+        var authDate = $cookieStore.get('authDate');
         var rest = now - authDate;
 
         //La fecha actual - la fecha en que guarde la autorizacion
