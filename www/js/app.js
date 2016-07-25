@@ -6,7 +6,7 @@
 
 //var Onsen = ons.bootstrap('Onsen', ['onsen']);
 
-var Onsen = ons.bootstrap('Onsen', ['onsen', 'ngStorage', 'ngCookies']);
+var Onsen = ons.bootstrap('Onsen', ['onsen', 'ngStorage', 'ngCookies', 'angular-websql']);
 
 //var Onsen = angular.module('Onsen', ['onsen', 'weatherModule', 'ngSanitize']);
 

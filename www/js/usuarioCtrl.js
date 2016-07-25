@@ -1,5 +1,7 @@
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore, $webSql) {
+
+    $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
     $scope.prestacionMP = {
         title: "",
@@ -71,51 +73,63 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     $scope.verificarTTLAuth = function () {
         $scope.crearModalEnRunTime();
         $scope.modal.show();
-        usuarioFactory.auth = JSON.parse($cookieStore.get('auth'));
-        var expires_in = usuarioFactory.auth.expires_in;
-        var now = Date.now();
-        var authDate = $cookieStore.get('authDate');
-        var rest = now - authDate;
+        $scope.db.selectAll("authmeli").then(function (results) {
+            var id = -1;
+            var auth = "";
+            var dateAuth = -1;
+            if (results.rows.length > 0) {
+                id = results.rows.item(0).id;
+                auth = JSON.parse(results.rows.item(0).auth);
+                dateAuth = results.rows.item(0).dateAuth;
+            }
+            usuarioFactory.idAuth = id;
+            usuarioFactory.auth = auth;
+            usuarioFactory.authDate = dateAuth;
+            var expires_in = usuarioFactory.auth.expires_in;
+            var now = Date.now();
+            var authDate = $cookieStore.get('authDate');
+            var rest = now - authDate;
 
-        //La fecha actual - la fecha en que guarde la autorizacion
-        //debe ser menor sino debo volver a solicitar el token
-        //mediante el refresh 
-        if (rest > expires_in) {
-            usuarioService.refreshAuth(usuarioFactory.auth.refresh_token)
-                    .then(function (data) {
-                        var respuesta = data.respuesta;
-                        if (respuesta === 'OK') {
-                            usuarioFactory.auth = angular.fromJson(data.contenido);
-                            $scope.guardarAutorizacionMP();
-                            //Aqui se genera realmente el initpoint
-                            $scope.generarInitPoint();
-                        } else {
+            //La fecha actual - la fecha en que guarde la autorizacion
+            //debe ser menor sino debo volver a solicitar el token
+            //mediante el refresh 
+            if (rest > expires_in) {
+                usuarioService.refreshAuth(usuarioFactory.auth.refresh_token)
+                        .then(function (data) {
+                            var respuesta = data.respuesta;
+                            if (respuesta === 'OK') {
+                                usuarioFactory.auth = angular.fromJson(data.contenido);
+                                $scope.guardarAutorizacionMP();
+                                //Aqui se genera realmente el initpoint
+                                $scope.generarInitPoint();
+                            } else {
+                                $scope.modal.hide();
+                                var mensaje = "No se pudo generar la autorización de MercadoPago";
+                                $scope.ons.notification.alert({
+                                    title: 'Info',
+                                    messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
+                                });
+                            }
+                        })
+                        .catch(function (data, status) {
                             $scope.modal.hide();
-                            var mensaje = "No se pudo generar la autorización de MercadoPago";
+                            var mensaje = "Excepción inesperada.";
+                            switch (status) {
+                                case 401:
+                                    mensaje = "No autorizado.";
+                                    break;
+                            }
                             $scope.ons.notification.alert({
                                 title: 'Info',
                                 messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
                             });
-                        }
-                    })
-                    .catch(function (data, status) {
-                        $scope.modal.hide();
-                        var mensaje = "Excepción inesperada.";
-                        switch (status) {
-                            case 401:
-                                mensaje = "No autorizado.";
-                                break;
-                        }
-                        $scope.ons.notification.alert({
-                            title: 'Info',
-                            messageHTML: '<strong style=\"color: #ff3333\">Error: ' + mensaje + '</strong>'
                         });
-                    });
 
-        } else {
-            //Aqui se genera realmente el initpoint
-            $scope.generarInitPoint();
-        }
+            } else {
+                //Aqui se genera realmente el initpoint
+                $scope.generarInitPoint();
+            }
+        });
     };
 
     $scope.getCobroFactory = function () {
@@ -140,43 +154,33 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.guardarAutorizacionMP = function () {
-//        $localStorage.$reset();
-//        $localStorage.auth = usuarioFactory.auth;
-//        $localStorage.authDate = Date.now();
-        $cookieStore.remove('auth');
-        $cookieStore.remove('authDate');
-        $cookieStore.put('auth', JSON.stringify(usuarioFactory.auth));
-        $cookieStore.put('authDate', Date.now());
+        $scope.db.selectAll("authmeli").then(function (results) {
+            var id = -1;
+            if (results.rows.length > 0) {
+                id = results.rows.item(0).id;
+                $scope.db.update("authmeli", {"auth": JSON.stringify(usuarioFactory.auth), "authDate": Date.now()}, {
+                    'id': id
+                });
+            } else {
+                $scope.db.insert('authmeli', {"auth": JSON.stringify(usuarioFactory.auth), "authDate": Date.now()}).then(function (results) {
+                    console.log(results.insertId);
+                });
+            }
+        });
+
     };
 
     $scope.borrarAutorizacionMP = function () {
-//        $localStorage.$reset();
-        $cookieStore.remove('auth');
-        $cookieStore.remove('authDate');
-        usuarioFactory.auth = "";
+        $scope.db.del("authmeli", {"id": usuarioFactory.idAuth});
+        usuarioFactory.auth = {};
+        usuarioFactory.idAuth = -1;
+        usuarioFactory.authDate = -1;
     };
 
     $scope.existeAutorizacionMP = function () {
-//        if (typeof ($localStorage.auth) === "undefined")
-//            return false;
-//        if ($localStorage.auth === "") {
-//            return false;
-//        }
-//        usuarioService.abrirBD();
-//        usuarioService.obtenerAuth();
-        // usuarioService.borrarAuth();
-//        usuarioService.insertarAuth($localStorage.auth, $localStorage.authDate);
-        var auth = $cookieStore.get('auth');
-        if (typeof auth === 'undefined' || auth === null) {
+        if (usuarioFactory.idAuth === -1) {
             return false;
         }
-        if (auth === "") {
-            return false;
-        }
-
-//        if ($cookies['auth'] === "") {
-//            return false;
-//        }
         return true;
     };
 
@@ -243,23 +247,40 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 ;
 
 
-Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$localStorage', '$cookieStore', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$localStorage', '$cookieStore', '$webSql', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore, $webSql) {
         ons.ready(function () {
-            var auth = $cookieStore.get('auth');
-            if (typeof auth === 'undefined' || auth === null) {
-                $cookieStore.put('auth', '');
-                $cookieStore.put('authDate', Date.now());
-            } else if (auth === '') {
-                $cookieStore.put('auth', '');
-                $cookieStore.put('authDate', Date.now());
-            } else {
-                usuarioFactory.clientIdMp = JSON.parse($cookieStore.get('auth'));
-                usuarioFactory.clientSecretMp = $cookieStore.get('authDate');
-            }
+            $scope.db.createTable('authmeli', {
+                "id": {
+                    "type": "INTEGER",
+                    "null": "NOT NULL", // default is "NULL" (if not defined)
+                    "primary": true, // primary
+                    "auto_increment": true // auto increment
+                },
+                "auth": {
+                    "type": "TEXT",
+                    "null": "NOT NULL"
+                },
+                "authDate": {
+                    "type": "INTEGER"
+                }
+            });
 
-            //authService.iniciarTimer();
+            $scope.db.selectAll("authmeli").then(function (results) {
+                var id = -1;
+                var auth = "";
+                var dateAuth = -1;
+                if (results.rows.length > 0) {
+                    id = results.rows.item(0).id;
+                    auth = JSON.parse(results.rows.item(0).auth);
+                    dateAuth = results.rows.item(0).authDate;
+                }
+                usuarioFactory.idAuth = id;
+                usuarioFactory.auth = auth;
+                usuarioFactory.authDate = dateAuth;
+            });
+
         });
-        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore);
+        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $localStorage, $cookieStore, $webSql);
     }]);
 
 
