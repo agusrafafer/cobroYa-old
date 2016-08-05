@@ -23,7 +23,7 @@ background-color: transparent;">
             <ons-row align="top" style="margin-bottom: 10px;" ng-show="{{!existeAutorizacionMP()}}">
                 <ons-col>
                     <iframe id="iframe1" 
-                            src="https://auth.mercadopago.com.ar/authorization?client_id=4098737792138788&response_type=code&platform_id=mp&redirect_uri=https://www.aguraing.com.ar/cobroYa/ws/AuthCustomer.php"
+                            ng-src="{{dml}}"
                             style="width:100%; height:450px;border-radius: 4px;
                             -webkit-border-radius: 4px;margin-bottom: 10px;"
                             ></iframe>

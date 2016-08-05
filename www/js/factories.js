@@ -31,7 +31,10 @@ Onsen.factory('wsFactory', function() {
 //        url: "http://204.197.242.154:8080/cobroYaWs/"
 //        url: "http://localhost:8080/cobroYaWs/"
 //url: "http://localhost/cobroYa/ws/"
-l: "https://www.aguraing.com.ar/cobroYa/ws/"
+        k: "SXGWLZPDOKFIVUHJYTQBNMACERjhtybqmncarexswgzldpkoifuv",
+        i: "%3FgnJ.BsOHgpOUc",
+        a: "%3FJng.TLVHpQNGDBNS",
+        l: "%2FdA%2FjEHTXwt%2FlS.VHt.PsOjTNmj.AAA%2F%2F%3AdJBpD"
     };
 });
 

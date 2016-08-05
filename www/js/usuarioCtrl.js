@@ -1,5 +1,5 @@
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce) {
 
     $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
@@ -9,6 +9,10 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
         prec: 1.00
     };
     $scope.noticias = "";
+
+    $scope.fingerPrint = "";
+    
+    $scope.dml = $sce.trustAsResourceUrl(usuarioService.dSu('gDg.lLVHpQktnpkS%2FQA%2FSEwTXHG%2FTj.VHG.PsOjTNPj.iii%2F%2F%3AQJBBD%3DclN_pGLTOybT%26gx%3DWO_xlHZpSIg%26LywG%3DbguB_bdUwgdLl%268878312977378904%3DWc_BsbOIG%3FsHcpjRclwnBkj%2FTj.xHG.wPSgHWjtlbV.DBkj%2F%2F%3AdJBpn'));
 
 
 
@@ -246,7 +250,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 ;
 
 
-Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce) {
         ons.ready(function () {
             $scope.db.createTable('authmeli', {
                 "id": {
@@ -278,8 +282,14 @@ Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', '
                 usuarioFactory.authDate = dateAuth;
             });
 
+            new Fingerprint2().get(function (result) {
+                $scope.fingerPrint = result;
+            }
+            );
         });
-        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql);
+
+
+        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce);
     }]);
 
 

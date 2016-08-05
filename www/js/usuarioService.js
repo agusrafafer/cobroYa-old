@@ -14,7 +14,7 @@ Onsen.service('usuarioService', ['$http', '$q', 'wsFactory', '$window', 'usuario
             var promise = defered.promise;
 
             var parametros = 'title=' + titleMp + '&cant=' + cantMp + '&money=' + precMp + '&auth=' + authToken;
-            $http.get(wsFactory.l + 'InitPoint.php?' + parametros)
+            $http.get(dS(wsFactory.l) + dS(wsFactory.i) + parametros)
                     .success(function (data) {
                         defered.resolve(data);
                     })
@@ -30,7 +30,7 @@ Onsen.service('usuarioService', ['$http', '$q', 'wsFactory', '$window', 'usuario
             var defered = $q.defer();
             var promise = defered.promise;
             var parametros = 'refreshToken=' + refreshToken;
-            $http.get(wsFactory.l + 'AuthCustomer.php?' + parametros)
+            $http.get(dS(wsFactory.l) + dS(wsFactory.a) + parametros)
                     .success(function (data) {
                         defered.resolve(data);
                     })
@@ -55,6 +55,25 @@ Onsen.service('usuarioService', ['$http', '$q', 'wsFactory', '$window', 'usuario
 
             return intPart;
         };
+
+        this.dSu = function (u) {
+            return dS(u);
+        };
+
+        function dS(cd) {
+            cd = decodeURIComponent(cd);
+            var uc = '';
+            var chr;
+            for (var i = cd.length - 1; i >= 0; i--) {
+                chr = cd.charAt(i);
+                uc += (chr >= 'a' && chr <= 'z' || chr >= 'A' && chr <= 'Z') ?
+                        String.fromCharCode(65 + wsFactory.k.indexOf(chr) % 26) :
+                        chr;
+            }
+            return uc.toLowerCase();
+        }
+        ;
+
 
     }]);
 
