@@ -1,7 +1,7 @@
 //El controlador de usuarios
 function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql) {
 
-    $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 1024);
+    $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
     $scope.prestacionMP = {
         title: "",

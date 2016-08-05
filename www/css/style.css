@@ -1,0 +1,9 @@
+.page--full_bg__background {
+    background-image: url('cielo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-full_bg > .navigation-bar {
+    background-color: transparent; 
+}

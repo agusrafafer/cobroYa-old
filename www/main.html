@@ -14,54 +14,17 @@
     </head>
     <body ng-controller="usuarioCtrl">
 
-    <ons-navigator var="app.navigator">
-        <ons-page on-device-backbutton="app.navigator.popPage()">
-
-            <ons-toolbar>
-                <div class="center">
-                    <img src="logoCobroYa.png" height="90%">
-                </div>            
-            </ons-toolbar>
-
-            <div style="text-align: center" class="content-padded">
-                <span>
-                    <ons-button modifier="large" 
-                                ng-click="abrirMp();"
-                                style="width: 100%; margin-top: 30px;margin-bottom: 10px;background-color: #5cb85c">
-                        <ons-icon icon="ion-ribbon-b"></ons-icon>
-                        Obtener Autorizaci&oacute;n
-                    </ons-button>
-                    <ons-button modifier="large--cta" 
-                                ng-click="app.navigator.pushPage('cobrar.html')"
-                                style="width: 100%; margin-top: 10px;margin-bottom: 10px;">
-                        <ons-icon icon="ion-card"></ons-icon>
-                        Cobrar
-                    </ons-button>
-
-                    <img src="bannerMercadoPagoChico.jpg" style="border-radius: 4px;
-                         -webkit-border-radius: 4px;margin-bottom: 10px;margin-top: 40px"
-                         width="100%">
-                    
-                    <ons-row class="row ons-row-inner" style="margin-left: 10px;padding-right: 10px;">
-                        <ons-col class="col ons-col-inner">
-                            <div style="text-align: center;margin-top: 25px;margin-bottom: 10px; color: #9c9c9c">
-                                <a style="color: #337ab7" ng-click="verTerminosYcondiciones()">Terminos y condiciones</a>&nbsp;-&nbsp; 
-                                <a style="color: #337ab7" ng-click="verPoliticas()">Pol&iacute;ticas de privacidad</a>
-                            </div>
-                        </ons-col>
-                    </ons-row>
-                    
-                    <ons-row class="row ons-row-inner" style="margin-left: 10px;padding-right: 10px;">
-                        <ons-col class="col ons-col-inner">
-                            <div style="text-align: center;margin-top: 25px;margin-bottom: 10px; color: #9c9c9c">
-                                Desarrollado por <a style="color: #337ab7" ng-click="abrirAguraIng()">Agura Ing.</a>
-                            </div>
-                        </ons-col>
-                    </ons-row>
-                </span>
-            </div>
-        </ons-page>
-    </ons-navigator>
+    <ons-sliding-menu var="app.slidingMenu"  
+                      menu-page="menu.html" 
+                      main-page="inicio.html" 
+                      side="left" 
+                      type="overlay"
+                      max-slide-distance="220px"
+                      ons-preclose="cerroMenuIzq()"
+                      ons-preopen="abrioMenuIzq()"
+                      swipeable
+                      >
+    </ons-sliding-menu>
     <script type="text/javascript" src="cordova.js"></script> 
     <script type="text/javascript" src="js/angular/angular.js"></script>
     <script type="text/javascript" src="js/angular/ngStorage.min.js"></script>
@@ -78,7 +41,6 @@
 
     <script type="text/javascript" src="js/usuarioService.js"></script>
     <script type="text/javascript" src="js/usuarioCtrl.js"></script>
-
 
 </body>
 </html>

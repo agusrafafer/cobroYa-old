@@ -1,0 +1,30 @@
+<ons-page style="background-color: white">
+
+    <ons-list>
+        
+        <ons-list-item 
+            modifier="tappable" class="list__item__line-height"
+            onclick="app.slidingMenu.setMainPage('inicio.html');
+                        app.slidingMenu.close();">
+            <i class="fa fa-home fa-lg" style="color: #666"></i>
+            &nbsp; Inicio
+        </ons-list-item>
+        
+        <ons-list-item ng-controller="usuarioCtrl"
+                       modifier="tappable" class="list__item__line-height"
+                       ng-click="app.navigator.pushPage('ayuda.html');
+                               app.slidingMenu.close();">
+            <i class="fa ion-help-circled fa-lg" style="color: #666"></i>
+            &nbsp; Ayuda
+        </ons-list-item>
+
+        <ons-list-item ng-controller="usuarioCtrl"
+                       modifier="tappable" class="list__item__line-height"
+                       ng-click="app.slidingMenu.close();">
+            <i class="fa ion-log-out fa-lg" style="color: #666"></i>
+            &nbsp; Salir
+        </ons-list-item>
+
+    </ons-list>
+
+</ons-page>
