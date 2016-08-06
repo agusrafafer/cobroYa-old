@@ -1,11 +1,12 @@
-<ons-page on-device-backbutton="app.navigator.popPage()" modifier="full_bg">
+<ons-page on-device-backbutton="app.navigator.popPage()">
 
-    <ons-toolbar style="border-bottom: 0px solid #ddd;
-background-color: transparent;">
+    <ons-toolbar class="fondo-celeste">
         <div class="left">
-            <ons-toolbar-button ng-click="app.navigator.popPage()"><ons-icon icon="ion-arrow-left-c" style="font-size: 28px;" fixed-width="false"></ons-icon></ons-toolbar-button>
+            <ons-toolbar-button ng-click="app.navigator.popPage()">
+                <ons-icon icon="ion-arrow-left-c" class="fuente-blanca fuente28" fixed-width="false"></ons-icon>
+            </ons-toolbar-button>
         </div>
-        <div class="center">Generar cobro</div>
+        <div class="center fuente-blanca fuente-bold">Gener&aacute; tu cobro</div>
     </ons-toolbar>
 
 
@@ -14,10 +15,10 @@ background-color: transparent;">
         <form name="frmCobro" novalidate>
             <ons-row align="top" style="margin-bottom: 10px;">
                 <ons-col align="center" width="100px">
-                    <label for="title">Prestaci&oacute;n: </label>
+                    <label for="title">Descripci&oacute;n: </label>
                 </ons-col>
                 <ons-col align="left">
-                    <input type="text" class="text-input"
+                    <input type="text" class="enjoy-input"
                            name="title"  placeholder="Un titulo para el servicio a cobrar" 
                            ng-model="prestacionMP.title" required style="width: 100%;">
                 </ons-col>
@@ -28,7 +29,7 @@ background-color: transparent;">
                     <label for="title">Cantidad: </label>
                 </ons-col>
                 <ons-col align="left">
-                    <input type="number" class="text-input"
+                    <input type="number" class="enjoy-input"
                            name="cantidad"  placeholder="0" 
                            ng-model="prestacionMP.cant" required style="width: 100px"
                            ng-minlength="1" ng-maxlength="5"
@@ -42,17 +43,17 @@ background-color: transparent;">
                     <label for="title">Precio $: </label>
                 </ons-col>
                 <ons-col align="left">
-                    <input type="number" class="text-input"
+                    <input type="number" class="enjoy-input"
                            name="precio"  placeholder="0" 
                            ng-model="prestacionMP.prec" required style="width: 100px"
-                           ng-minlength="1" ng-maxlength="5"
-                           min="1" maxlength="5" 
+                           ng-minlength="1" ng-maxlength="7"
+                           min="1" maxlength="7" 
                            ng-pattern="/^[1-9][0-9]{0,2}(?:,?[0-9]{3}){0,3}(?:\.[0-9]{1,2})?$/">
                 </ons-col>
             </ons-row>
 
             <br><br>
-            <ons-button modifier="large" class="login-button" 
+            <ons-button modifier="large" class="fondo-verde" 
                         ng-click="initPoint()"
                         ng-disabled="!frmCobro.$valid"
                         >

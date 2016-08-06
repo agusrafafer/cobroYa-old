@@ -1,26 +1,42 @@
 <ons-page style="background-color: white">
 
-    <ons-list>
-        
+    <ons-list ng-controller="usuarioCtrl">
+
         <ons-list-item 
             modifier="tappable" class="list__item__line-height"
             onclick="app.slidingMenu.setMainPage('inicio.html');
-                        app.slidingMenu.close();">
+                    app.slidingMenu.close();">
             <i class="fa fa-home fa-lg" style="color: #666"></i>
             &nbsp; Inicio
         </ons-list-item>
-        
+
+        <ons-list-item 
+            modifier="tappable" class="list__item__line-height"
+            ng-click="app.slidingMenu.close();abrirMp();">
+            <i class="fa ion-ribbon-b fa-lg" style="color: #666"></i>
+            &nbsp; Autorizar
+        </ons-list-item>
+
+        <ons-list-item 
+            modifier="tappable" class="list__item__line-height"
+            onclick="app.navigator.pushPage('cobrar.html');
+                    app.slidingMenu.close();"
+                ng-show="existeAutorizacionMP()">
+            <i class="fa ion-card fa-lg" style="color: #666"></i>
+            &nbsp; Cobrar
+        </ons-list-item>
+
         <ons-list-item ng-controller="usuarioCtrl"
                        modifier="tappable" class="list__item__line-height"
                        ng-click="app.navigator.pushPage('ayuda.html');
-                               app.slidingMenu.close();">
+                                   app.slidingMenu.close();">
             <i class="fa ion-help-circled fa-lg" style="color: #666"></i>
             &nbsp; Ayuda
         </ons-list-item>
 
         <ons-list-item ng-controller="usuarioCtrl"
                        modifier="tappable" class="list__item__line-height"
-                       ng-click="app.slidingMenu.close();">
+                       ng-click="app.slidingMenu.close();salir()">
             <i class="fa ion-log-out fa-lg" style="color: #666"></i>
             &nbsp; Salir
         </ons-list-item>

@@ -14,6 +14,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     
     $scope.dml = $sce.trustAsResourceUrl(usuarioService.dSu('gDg.lLVHpQktnpkS%2FQA%2FSEwTXHG%2FTj.VHG.PsOjTNPj.iii%2F%2F%3AQJBBD%3DclN_pGLTOybT%26gx%3DWO_xlHZpSIg%26LywG%3DbguB_bdUwgdLl%268878312977378904%3DWc_BsbOIG%3FsHcpjRclwnBkj%2FTj.xHG.wPSgHWjtlbV.DBkj%2F%2F%3AdJBpn'));
 
+    $scope.hoy = new Date();
 
 
     $scope.crearModalEnRunTime = function () {
@@ -244,6 +245,25 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 
     $scope.verPoliticas = function () {
         $scope.app.navigator.pushPage("politicas.html");
+    };
+    
+    $scope.salir = function() {
+        $scope.ons.notification.confirm({
+            message: '¿Seguro deseas salir de CobroYa?',
+            buttonLabels: ['No', 'Si'],
+            title: 'Info',
+            callback: function(idx) {
+                switch (idx) {
+                    case 0:
+                        // Presiono No
+//                        $scope.modal.hide();
+                        break;
+                    case 1:
+                        navigator.app.exitApp();
+                        break;
+                }
+            }
+        });
     };
 
 }

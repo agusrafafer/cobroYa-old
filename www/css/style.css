@@ -1,9 +1,92 @@
 .page--full_bg__background {
-    background-image: url('cielo.jpg');
+    background-image: url('bg5-blur.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .page-full_bg > .navigation-bar {
     background-color: transparent; 
+}
+
+.fuente28 {
+    font-size: 28px;   
+}
+
+.fuente-blanca {
+    color: white;
+}
+
+.fuente-bold {
+    font-weight: bold;
+}
+
+.fondo-celeste {
+    background-color: #25a6d9;
+}
+
+.fondo-verde {
+    background-color: #5cb85c;
+}
+
+.fuente-enjoy {
+    color: rgba(0,142,198,1);
+}
+
+.enjoy-input:hover {
+    border: 1px solid #a3a3a3;
+    background: rgba(255,255,255,1);
+    -webkit-transition: all 100ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 100ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 100ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 100ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.enjoy-input {
+    display: inline-block;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    float: none;
+    z-index: auto;
+    width: auto;
+    height: auto;
+    position: static;
+    /*content: ;*/
+    cursor: default;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    margin: 0;
+    padding: 5px 10px;
+    overflow: visible;
+    border: 1px solid #b7b7b7;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font: normal normal normal medium/normal Arial, Helvetica, sans-serif;
+    color: rgba(0,142,198,1);
+    text-decoration: none;
+    text-align: left;
+    text-transform: none;
+    text-indent: 0;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    letter-spacing: normal;
+    white-space: normal;
+    word-spacing: normal;
+    /*word-wrap: ;*/
+    background: rgba(252,252,252,1);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.66);
+    -webkit-transition: all 200ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms 0 cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transform: scaleX(1) scaleY(1) scaleZ(1);
+    -webkit-transform: scaleX(1) scaleY(1) scaleZ(1);
+    transform: scaleX(1) scaleY(1) scaleZ(1);
+    -moz-transform-origin: 50% 50% 0;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
 }
