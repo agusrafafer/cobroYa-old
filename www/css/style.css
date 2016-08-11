@@ -19,12 +19,44 @@ body {
     background-color: transparent; 
 }
 
+.monse {
+  font-family: 'Montserrat';  
+}
+
+.monse-light {
+    font-family: 'Montserrat Light';  
+}
+
 .fuente28 {
     font-size: 28px;   
 }
 
+.fuente14 {
+    font-size: 14px;
+}
+
 .fuente-blanca {
     color: white;
+}
+
+.fuente-negra {
+    color: black;
+}
+
+.fuente-gris-clara {
+    color: #bbb6b6;
+}
+
+.fuente-azul-oscuro {
+    color: black;
+}
+
+.fuente-celeste {
+    color: #25a6d9;
+}
+
+.fuente-celeste {
+    color: #25a6d9;
 }
 
 .fuente-bold {

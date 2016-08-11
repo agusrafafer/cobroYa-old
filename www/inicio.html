@@ -4,7 +4,7 @@
               modifier="full_bg">
 
         <ons-toolbar style="border-bottom: 0px none transparent;
-background-color: transparent;">
+                     background-color: transparent;">
             <div class="left">
                 <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()">
                     <ons-icon icon="bars" class="fuente-blanca fuente28"></ons-icon>
@@ -39,21 +39,30 @@ background-color: transparent;">
                         <img src="tarjetas-mp-1.png" width="100%">
                     </ons-col>
                 </ons-row>
-                
+
 
                 <ons-row class="row ons-row-inner" style="margin-left: 10px;padding-right: 10px;">
                     <ons-col class="col ons-col-inner">
                         <div style="text-align: center;margin-top: 25px;margin-bottom: 10px; color: #9c9c9c">
-                            <a class="fuente-blanca" ng-click="verTerminosYcondiciones()">Terminos y condiciones</a>&nbsp;-&nbsp; 
-                            <a class="fuente-blanca" ng-click="verPoliticas()">Pol&iacute;ticas de privacidad</a>
+                            <a class="monse-light fuente-negra fuente14" ng-click="verTerminosYcondiciones()">Terminos y condiciones</a> 
+                        </div>
+                    </ons-col>
+                    <ons-col class="col ons-col-inner">
+                        <div style="text-align: center;margin-top: 25px;margin-bottom: 10px; color: #9c9c9c">
+                            &nbsp;&nbsp;    
+                        </div>
+                    </ons-col>
+                    <ons-col class="col ons-col-inner">
+                        <div style="text-align: center;margin-top: 25px;margin-bottom: 10px; color: #9c9c9c">
+                            <a class="monse-light fuente-negra fuente14" ng-click="verPoliticas()">Pol&iacute;ticas de privacidad</a>
                         </div>
                     </ons-col>
                 </ons-row>
 
                 <ons-row class="row ons-row-inner" style="margin-left: 10px;padding-right: 10px;">
                     <ons-col class="col ons-col-inner">
-                        <div class="fuente-blanca" style="text-align: center;margin-top: 25px;margin-bottom: 10px;">
-                            &COPY; CobroYa {{hoy | date:'yyyy'}}
+                        <div class="monse-light fuente-negra" style="text-align: center;margin-top: 25px;margin-bottom: 10px;">
+                            &COPY; CobroYa {{hoy| date:'yyyy'}}
                         </div>
                     </ons-col>
                 </ons-row>
