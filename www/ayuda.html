@@ -1,19 +1,27 @@
 <ons-page on-device-backbutton="app.navigator.popPage()" ng-controller="usuarioCtrl">
 
-    <ons-toolbar>
+    <ons-toolbar class="fondo-celeste">
         <div class="left">
-            <ons-toolbar-button ng-click="app.slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+            <ons-toolbar-button ng-click="app.navigator.popPage()">
+                <ons-icon icon="ion-arrow-left-c" class="fuente-blanca fuente28" fixed-width="false">
+                </ons-icon>
+            </ons-toolbar-button>
         </div>
-        <div class="center">AYUDA</div>
-        <div class="right">
-            
-        </div>
+        <div class="center fuente-blanca fuente-bold">Ayuda</div>
     </ons-toolbar>
+    <div class="content">
+        <ons-list modifier="inset" style="margin-top: 10px">
+            <ons-list-item modifier="tappable" ng-click="app.navigator.pushPage('ayudaObtenerAutorizacion.html')">
+                ¿C&oacute;mo obtener autorizaci&oacute;n&quest;
+            </ons-list-item>
+            <ons-list-item modifier="tappable" ng-click="app.navigator.pushPage('ayudaCobrar.html')">
+                ¿C&oacute;mo generar un cobro&quest;
+            </ons-list-item>
+            <ons-list-item modifier="tappable" ng-click="app.navigator.pushPage('ayudaConfirmaCobro.html')">
+                ¿C&oacute;mo confirmar un Cobro&quest;
+            </ons-list-item>
+        </ons-list>
 
-
-
-    <div>
-        
     </div>
 
 </ons-page>

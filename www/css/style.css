@@ -1,4 +1,15 @@
+@import url('http://allfont.net/cache/css/montserrat.css');
+@import url('http://allfont.net/cache/css/montserrat-hairline.css');
+@import url('http://allfont.net/cache/css/montserrat-light.css');
+@import url('http://allfont.net/cache/css/montserrat-bold.css');
+
+body {
+    font-family: 'Montserrat';
+}
+
+
 .page--full_bg__background {
+    font-family: 'Montserrat';
     background-image: url('bg5-blur.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,4 +100,22 @@
     -moz-transform-origin: 50% 50% 0;
     -webkit-transform-origin: 50% 50% 0;
     transform-origin: 50% 50% 0;
+}
+
+.Estilo8 {color: #FF0000; font-style: italic; 
+          font-family: Montserrat; }
+
+.Estilo6 {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: bolder;
+    background-color: #FFFFFF;
+}
+
+.borde-img-ayuda {
+    border-radius: 3px;
+    border-style: solid;
+    border-color: lightblue;
+    border-width: 2px;
 }

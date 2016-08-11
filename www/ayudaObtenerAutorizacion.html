@@ -1,0 +1,29 @@
+<ons-page on-device-backbutton="app.navigator.popPage()" ng-controller="usuarioCtrl">
+
+    <ons-toolbar class="fondo-celeste">
+        <div class="left">
+            <ons-toolbar-button ng-click="app.navigator.popPage()">
+                <ons-icon icon="ion-arrow-left-c" class="fuente-blanca fuente28" fixed-width="false">
+                </ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center fuente-blanca fuente-bold">Ayuda autorizar app</div>
+    </ons-toolbar>
+
+    <div class="content-padded">
+        <p class="Estilo6">Primer Paso: </p>
+        <p>Para operar se necesita por &uacute;nica vez la   autorizaci&oacute;n de Mercado Pago </p>
+        <p>Para ello debes ingresar a Obtener Autorizaci&oacute;n </p>
+        <p><img src="Imagenes/ObtAut.png" width="300" height="550" class="borde-img-ayuda" /></p>
+        <p class="Estilo6">Si no dispones de un usuario en Mercado Pago podes registrarlo en el siguiente link </p>
+        <p>&nbsp;<a target="blank" href="https://registration.mercadopago.com.ar/registration-mp?mode=mp">https://registration.mercadopago.com.ar/registration-mp?mode=mp</a></p>
+        <p class="Estilo6">Segundo Paso : </p>
+        <p>Si  dispon&eacute;s de un usuario en Mercado Pago </p>
+        <p>Ingresa usuario y Contrase&ntilde;a, luego el bot&oacute;n Ingresar </p>
+        <p class="Estilo1"><img src="Imagenes/Autorizacion.png" width="300" height="550" class="borde-img-ayuda" /></p>
+        <p class="Estilo6">Tercer Paso :</p>
+        <p>Si la autorizaci&oacute;n fue aceptada ya puedes empezar a cobrar</p>
+        <p><img src="Imagenes/AutExit.png" width="300" height="550" class="borde-img-ayuda" /></p>
+    </div>
+
+</ons-page>
