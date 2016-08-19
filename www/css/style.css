@@ -1,7 +1,38 @@
-@import url('http://allfont.net/cache/css/montserrat.css');
-@import url('http://allfont.net/cache/css/montserrat-hairline.css');
-@import url('http://allfont.net/cache/css/montserrat-light.css');
-@import url('http://allfont.net/cache/css/montserrat-bold.css');
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat'), local('Montserrat-Regular'),
+        url('./allfont/montserrat_6c592150f16c76d1fb13f929bd2c5a44.woff') format('woff'),
+        url('./allfont/montserrat_6c592150f16c76d1fb13f929bd2c5a44.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat Hairline';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat Hairline'), local('Montserrat-Hairline'),
+        url('./allfont/montserrat-hairline_2c5c1d56419aab19913d7c7f93fee7f1.woff') format('woff'),
+        url('./allfont/montserrat-hairline_2c5c1d56419aab19913d7c7f93fee7f1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat Light';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat Light'), local('Montserrat-Light'),
+        url('./allfont/montserrat-light_d508f4bcd80b35f5ab68ae7d0e466277.woff') format('woff'),
+        url('./allfont/montserrat-light_d508f4bcd80b35f5ab68ae7d0e466277.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Montserrat Bold'), local('Montserrat-Bold'),
+        url('./allfont/montserrat-bold_8c84f968d8b0ccfc680ec7dda735ea09.woff') format('woff'),
+        url('./allfont/montserrat-bold_8c84f968d8b0ccfc680ec7dda735ea09.ttf') format('truetype');
+}
 
 body {
     font-family: 'Montserrat';
