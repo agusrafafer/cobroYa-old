@@ -47,7 +47,7 @@
     </feature>
     <feature name="InAppBrowser" />
     
-    <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" version="0.6.0" />
+    <gap:plugin name="org.apache.cordova.core.inappbrowser" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <!--<gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.6.3" />-->
     
