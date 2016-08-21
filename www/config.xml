@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.agura.cobroYa" 
+<widget id="com.agura.cobroya" 
         version="0.0.1" 
         xmlns="http://www.w3.org/ns/widgets" 
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
@@ -9,7 +9,7 @@
         App para cobros usando MercadoPago.
     </description>
     <author email="agusrafafer@gmail.com" href="http://agura.com.ar">
-        Agura Ing.
+        CobroYa
     </author>
     <access origin="*"/>
     <content src="index.html" />
@@ -22,6 +22,7 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="fullscreen" value="false" /> 
     <preference name="android-windowSoftInputMode" value="adjustResize|stateHidden" />
+    <preference name="orientation" value="portrait" />
     <allow-navigation href="http://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

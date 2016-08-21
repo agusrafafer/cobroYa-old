@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi" />
+        <meta http-equiv="Content-Security-Policy">
+        <link rel="stylesheet" href="css/onsenui.css"/>
+        <link rel="stylesheet" href="css/onsen-css-components.css"/>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/registro.css">
+
+    </head>
+    <body ng-controller="usuarioCtrl">
+
+    <ons-sliding-menu var="app.slidingMenu"  
+                      menu-page="menu.html" 
+                      main-page="inicio.html" 
+                      side="left" 
+                      type="overlay"
+                      max-slide-distance="220px"
+                      ons-preclose="cerroMenuIzq()"
+                      ons-preopen="abrioMenuIzq()"
+                      swipeable
+                      >
+    </ons-sliding-menu>
+    <script type="text/javascript" src="cordova.js"></script> 
+    <script type="text/javascript" src="js/angular/angular.js"></script>
+    <script type="text/javascript" src="js/angular/ngStorage.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular-websql.min.js"></script>
+    <script type="text/javascript" src="js/onsenui.min.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+
+    <script type="text/javascript" src="js/app.min.js"></script>
+    <script type="text/javascript" src="js/factories.min.js"></script>
+
+
+    <script type="text/javascript" src="js/usuarioService.min.js"></script>
+    <script type="text/javascript" src="js/usuarioCtrl.min.js"></script>
+    <script type="text/javascript" src="js/fingerprint2.min.js"></script>
+
+    
+    
+    
+</body>
+</html>
