@@ -5,8 +5,7 @@
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         version="0.0.2" 
-        versionCode="1" 
-        android-versionCode="1">
+        >
     <name>CobroYa App</name>
     <description>
         App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago.
