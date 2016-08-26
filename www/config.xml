@@ -3,12 +3,15 @@
         version="0.0.1" 
         xmlns="http://www.w3.org/ns/widgets" 
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
-        xmlns:gap = "http://phonegap.com/ns/1.0">
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        version="0.0.2" 
+        versionCode="1" 
+        android-versionCode="1">
     <name>CobroYa App</name>
     <description>
-        App para cobros usando MercadoPago.
+        App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago.
     </description>
-    <author email="agusrafafer@gmail.com" href="http://agura.com.ar">
+    <author email="cobroyaapp@gmail.com" href="http://www.cobroya.agura.com.ar">
         CobroYa
     </author>
     <access origin="*"/>
@@ -20,6 +23,7 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="SplashScreenDelay" value="4000" />
     <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
     <preference name="fullscreen" value="false" /> 
     <preference name="android-windowSoftInputMode" value="adjustResize|stateHidden" />
     <preference name="orientation" value="portrait" />
