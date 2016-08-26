@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.agura.cobroya"  
+<widget id="com.agura.cobroYa"  
         xmlns="http://www.w3.org/ns/widgets" 
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         version="0.0.2" 
-        versionCode="1" 
-        android-versionCode="1">
+        versionCode="43" 
+        android-versionCode="0043">
     <name>CobroYa App</name>
     <description>
         App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago.
