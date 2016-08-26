@@ -11,7 +11,7 @@
         App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago.
     </description>
     <author email="cobroyaapp@gmail.com" href="http://www.cobroya.agura.com.ar">
-        CobroYa
+        CobroYa 
     </author>
     <access origin="*"/>
     <content src="index.html" />
