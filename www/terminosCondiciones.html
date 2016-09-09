@@ -1,4 +1,4 @@
-<ons-page on-device-backbutton="app.navigator.popPage()" >
+<ons-page on-device-backbutton="app.navigator.popPage()" ng-controller="usuarioCtrl">
 
     <ons-toolbar class="fondo-celeste">
         <div class="left">
@@ -19,7 +19,7 @@
                 CobroYa es una aplicación para dispositivos Android 4.1 y superior, de ahora en más, La aplicación.
             </li>
             <li>
-                El Usuario que utilice La aplicación, acepta los términos y condiciones de uso de la misma.<br>
+                El Usuario que instale y utilice La aplicación, acepta los términos y condiciones de uso de la misma.<br>
                 La aplicación actúa como intermediario entre el Usuario y el servicio MercadoPago de MercadoLibre S.R.L. CUIT: 30-70308853-4, brindando la posibilidad de cobrar mediante tarjetas de crédito y medios offline ofrecidos por MercadoPago.<br>
                 La aplicación y sus usuarios estarán sujetos a los términos y condiciones que rigen MercadoPago. 
                 Estas condiciones de uso (Condiciones Generales) constituyen un contrato entre cualquier persona (en adelante Usuario o en plural Usuarios) que desee acceder y/o usar el servicio MercadoPago, en cuyo caso el Usuario estará sujeto a los términos y condiciones que rigen MercadoPago.
@@ -83,7 +83,7 @@
                             La aplicación NO administra, gestiona, ni transacciona dinero.
                         </p>
                         <p>
-                            El Usuario recibe y retira su dinero sólo por MercadoPago, aceptando los términos y condiciones de uso que MercadoPago le ofrece. Para leer los términos y condiciones de uso de MercadoPago de manera completa hacer click <a href="https://www.mercadopago.com.ar/ayuda/terminos-y-condiciones_299" target="_blank">aquí.</a>
+                            El Usuario recibe y retira su dinero sólo por MercadoPago, aceptando los términos y condiciones de uso que MercadoPago le ofrece. Para leer los términos y condiciones de uso de MercadoPago de manera completa hacer click <a href="#" ng-click="abrirTermMP()">aquí.</a>
                         </p>
                     </li>
                     <li>
