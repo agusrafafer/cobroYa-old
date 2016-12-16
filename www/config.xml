@@ -42,7 +42,7 @@
     </platform>
     
     
-    <feature name="InAppBrowser"> 
+   <feature name="InAppBrowser"> 
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser"/>
     </feature>
     <feature name="InAppBrowser">
@@ -50,8 +50,8 @@
     </feature>
     <feature name="InAppBrowser" />
     
-    <gap:plugin name="org.apache.cordova.core.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
     <!--<gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.6.3" />-->
     
     
