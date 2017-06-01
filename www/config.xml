@@ -6,9 +6,9 @@
         version="0.0.3" 
         versionCode="431" 
         android-versionCode="431">
-    <name>CobroYa App</name>
+    <name>CobroYa Chile</name>
     <description>
-        App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago.
+        App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago Chile.
     </description>
     <author email="cobroyaapp@gmail.com" href="http://www.cobroya.agura.com.ar">
         CobroYa 
