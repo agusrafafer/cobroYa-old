@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.agura.cobroYa"  
+<widget id="com.agura.chile.cobroYa"  
         xmlns="http://www.w3.org/ns/widgets" 
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        version="0.0.3" 
-        versionCode="431" 
-        android-versionCode="431">
+        version="0.0.4" 
+        versionCode="441" 
+        android-versionCode="441">
     <name>CobroYa Chile</name>
     <description>
         App para cobros a tus clientes mediante tarjetas de credito usando MercadoPago Chile.
