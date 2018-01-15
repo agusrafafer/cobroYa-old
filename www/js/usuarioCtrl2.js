@@ -1,5 +1,5 @@
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $cordovaInAppBrowser) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce) {
 
     $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
@@ -38,11 +38,11 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.abrirInitiPoint = function () {
-        $cordovaInAppBrowser.open(cobroFactory.initPoint, "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+        cordova.InAppBrowser.open(cobroFactory.initPoint, "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
     };
     
     $scope.abrirAutorizacionMP = function () {
-        $cordovaInAppBrowser.open($scope.dml, "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+        cordova.InAppBrowser.open($scope.dml, "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
     };
 
     $scope.generarInitPoint = function () {
@@ -244,11 +244,11 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.abrirRegMP = function () {
-        $cordovaInAppBrowser.open("https://registration.mercadopago.com.ar/registration-mp?mode=mp", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+        cordova.InAppBrowser.open("https://registration.mercadopago.com.ar/registration-mp?mode=mp", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
     };
 
     $scope.abrirTermMP = function () {
-        $cordovaInAppBrowser.open("https://www.mercadopago.com.ar/ayuda/terminos-y-condiciones_299", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+        cordova.InAppBrowser.open("https://www.mercadopago.com.ar/ayuda/terminos-y-condiciones_299", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
     };
 
     $scope.verTerminosYcondiciones = function () {
@@ -282,7 +282,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 ;
 
 
-Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', '$cordovaInAppBrowser', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $cordovaInAppBrowser) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce) {
         ons.ready(function () {
             $scope.db.createTable('authmeli', {
                 "id": {
@@ -321,7 +321,7 @@ Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', '
         });
 
 
-        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $cordovaInAppBrowser);
+        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce);
     }]);
 
 
