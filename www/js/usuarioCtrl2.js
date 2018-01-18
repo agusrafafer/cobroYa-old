@@ -42,8 +42,8 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.abrirAutorizacionMP = function () {
-        var win = $window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
-        
+        var win = window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
+
         win.addEventListener("loadstop", function () {
 
             // Clear out the name in localStorage for subsequent opens.
@@ -65,12 +65,16 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                                 var respJson = JSON.parse(respuesta);
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
+                                $scope.ons.notification.alert({
+                                    title: 'Info',
+                                    messageHTML: '<strong style=\"color: #ff3333\">Guardo?</strong>'
+                                });
                                 win.close();
-                                win.clearInterval(loop);
+                                clearInterval(loop);
                             }
                         }
                 );
-            }, 2000);
+            });
         });
 
 //        win.addEventListener("exit", function () {
