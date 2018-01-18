@@ -66,8 +66,8 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                                 var respJson = JSON.parse(respuesta);
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
-                                win.clearInterval(loop);
                                 win.close();
+                                win.clearInterval(loop);
                             }
                         }
                 );
