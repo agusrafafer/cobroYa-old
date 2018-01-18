@@ -42,7 +42,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.abrirAutorizacionMP = function () {
-        var win = $window.open($scope.dml, "_blank", "location=no,clearsessioncache=yes,clearcache=yes,EnableViewPortScale=yes");
+        var win = $window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
         win.addEventListener("loadstop", function () {
 
             // Clear out the name in localStorage for subsequent opens.
@@ -58,13 +58,21 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                             code: "localStorage.getItem( 'responseWs' )"
                         },
                         function (values) {
-                            var response = values[0];
+                            var respuesta = values[0];
                             // If a response was set, clear the interval and close the InAppBrowser.
-                            if (response) {
+                            if (respuesta) {
+
+                                $scope.ons.notification.alert({
+                                    title: 'Info',
+                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + angular.fromJson(respuesta.contenido) + '</strong>'
+                                });
+
+                                $scope.ons.notification.alert({
+                                    title: 'Info',
+                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + respuesta + '</strong>'
+                                });
                                 
-                                alert(angular.fromJson(response.contenido));
-                                alert(response);
-                                usuarioFactory.auth = angular.fromJson(response.contenido);
+                                usuarioFactory.auth = angular.fromJson(respuesta.contenido);
                                 $scope.guardarAutorizacionMP();
                                 clearInterval(loop);
                                 //win.close();
