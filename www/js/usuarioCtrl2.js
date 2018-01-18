@@ -61,21 +61,21 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                             var respuesta = values[0];
                             // If a response was set, clear the interval and close the InAppBrowser.
                             if (respuesta) {
-
+                                var respJson = JSON.parse(respuesta);
                                 $scope.ons.notification.alert({
                                     title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + angular.fromJson(respuesta.contenido) + '</strong>'
+                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + angular.fromJson(respJson.contenido) + '</strong>'
                                 });
 
                                 $scope.ons.notification.alert({
                                     title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + respuesta + '</strong>'
+                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + respJson + '</strong>'
                                 });
                                 
-                                usuarioFactory.auth = angular.fromJson(respuesta.contenido);
+                                usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
                                 clearInterval(loop);
-                                //win.close();
+                                win.close();
                             }
                         }
                 );
