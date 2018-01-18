@@ -43,7 +43,6 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 
     $scope.abrirAutorizacionMP = function () {
         var win = $window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
-        win.executeScript({code: "localStorage.setItem( 'responseWs', '' );"});
         
         win.addEventListener("loadstop", function () {
 
