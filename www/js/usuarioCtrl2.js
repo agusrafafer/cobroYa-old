@@ -58,13 +58,16 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                             code: "localStorage.getItem( 'responseWs' )"
                         },
                         function (values) {
-                            var response = values[ 0 ];
-                            // If a name was set, clear the interval and close the InAppBrowser.
+                            var response = values[0];
+                            // If a response was set, clear the interval and close the InAppBrowser.
                             if (response) {
+                                
+                                alert(angular.fromJson(response.contenido));
+                                alert(response);
                                 usuarioFactory.auth = angular.fromJson(response.contenido);
                                 $scope.guardarAutorizacionMP();
                                 clearInterval(loop);
-                                win.close();
+                                //win.close();
                             }
                         }
                 );
