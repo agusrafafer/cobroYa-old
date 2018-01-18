@@ -198,6 +198,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
             var id = -1;
             if (results.rows.length > 0) {
                 id = results.rows.item(0).id;
+                usuarioFactory.idAuth = id;
                 $scope.db.update("authmeli", {"auth": JSON.stringify(usuarioFactory.auth), "authDate": Date.now()}, {
                     'id': id
                 });
