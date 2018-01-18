@@ -43,34 +43,57 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 
     $scope.abrirAutorizacionMP = function () {
         var win = $window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
-        win.addEventListener("loadstop", function () {
+        win.executeScript({code: "localStorage.setItem( 'responseWs', '' );"});
+        
+//        win.addEventListener("loadstop", function () {
+//
+//            // Clear out the name in localStorage for subsequent opens.
+//            win.executeScript({code: "localStorage.setItem( 'responseWs', '' );"});
+//
+//            // Start an interval
+//            var loop = setInterval(function () {
+//
+//                // Execute JavaScript to check for the existence of a name in the
+//                // child browser's localStorage.
+//                win.executeScript(
+//                        {
+//                            code: "localStorage.getItem( 'responseWs' )"
+//                        },
+//                        function (values) {
+//                            var respuesta = values[0];
+//                            // If a response was set, clear the interval and close the InAppBrowser.
+//                            if (respuesta) {
+//                                var respJson = JSON.parse(respuesta);
+//                                usuarioFactory.auth = angular.fromJson(respJson.contenido);
+//                                $scope.guardarAutorizacionMP();
+//                                clearInterval(loop);
+//                                win.close();
+//                            }
+//                        }
+//                );
+//            });
+//        });
 
-            // Clear out the name in localStorage for subsequent opens.
-            win.executeScript({code: "localStorage.setItem( 'responseWs', '' );"});
-
-            // Start an interval
-            var loop = setInterval(function () {
-
-                // Execute JavaScript to check for the existence of a name in the
-                // child browser's localStorage.
-                win.executeScript(
-                        {
-                            code: "localStorage.getItem( 'responseWs' )"
-                        },
-                        function (values) {
-                            var respuesta = values[0];
-                            // If a response was set, clear the interval and close the InAppBrowser.
-                            if (respuesta) {
-                                var respJson = JSON.parse(respuesta);                                
-                                usuarioFactory.auth = angular.fromJson(respJson.contenido);
-                                $scope.guardarAutorizacionMP();
-                                clearInterval(loop);
-                                win.close();
-                            }
+        win.addEventListener("exit", function () {
+            win.executeScript(
+                    {
+                        code: "localStorage.getItem( 'responseWs' )"
+                    },
+                    function (values) {
+                        var respuesta = values[0];
+                        // If a response was set, clear the interval and close the InAppBrowser.
+                        if (respuesta) {
+                            var respJson = JSON.parse(respuesta);
+                            usuarioFactory.auth = angular.fromJson(respJson.contenido);
+                            $scope.guardarAutorizacionMP();
+                            //clearInterval(loop);
+                            win.close();
                         }
-                );
-            });
+                    }
+            );
+
         });
+
     };
 
     $scope.generarInitPoint = function () {
