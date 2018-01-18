@@ -61,17 +61,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                             var respuesta = values[0];
                             // If a response was set, clear the interval and close the InAppBrowser.
                             if (respuesta) {
-                                var respJson = JSON.parse(respuesta);
-                                $scope.ons.notification.alert({
-                                    title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + angular.fromJson(respJson.contenido) + '</strong>'
-                                });
-
-                                $scope.ons.notification.alert({
-                                    title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">Respuesta: ' + respJson + '</strong>'
-                                });
-                                
+                                var respJson = JSON.parse(respuesta);                                
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
                                 clearInterval(loop);
@@ -214,6 +204,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
             } else {
                 $scope.db.insert('authmeli', {"auth": JSON.stringify(usuarioFactory.auth), "authDate": Date.now()}).then(function (results) {
                     console.log(results.insertId);
+                    usuarioFactory.idAuth = results.insertId;
                 });
             }
         });
@@ -234,52 +225,52 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
         return true;
     };
 
-    $scope.loadIframeMP = function () {
-        if (!$scope.existeAutorizacionMP()) {
-
-            var eventMethod = $window.addEventListener ? "addEventListener" : "attachEvent";
-            var eventer = $window[eventMethod];
-            var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
-
-            //Escuchando el mensaje enviado desde la pagina contenida en el iframe
-            //que devuelve la autorizacion de mercaopago
-            eventer(messageEvent, function (e) {
-                if (e.data.respuesta === 'OK') {
-                    var contenido = angular.fromJson(e.data.contenido);
-                    usuarioFactory.auth = contenido;
-                    usuarioService.refreshAuth(usuarioFactory.auth.refresh_token)
-                            .then(function (data) {
-                                var respuesta = data.respuesta;
-                                if (respuesta === 'OK') {
-                                    usuarioFactory.auth = angular.fromJson(data.contenido);
-                                    $scope.guardarAutorizacionMP();
-
-//                                    var articleRow = angular.element($document[0].querySelector('#divAvisoIni'));
-//                                    articleRow.remove();
-
-                                } else {
-                                    $scope.ons.notification.alert({
-                                        title: 'Info',
-                                        messageHTML: '<strong style=\"color: #ff3333\">' + data.contenido + '</strong>'
-                                    });
-                                }
-                            })
-                            .catch(function (data, status) {
-                                var mensaje = "Problemas de conectividad";
-                                switch (status) {
-                                    case 401:
-                                        mensaje = "Problemas de conectividad con el servidor";
-                                        break;
-                                }
-                                $scope.ons.notification.alert({
-                                    title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">' + mensaje + '</strong>'
-                                });
-                            });
-                }
-            }, false);
-        }
-    };
+//    $scope.loadIframeMP = function () {
+//        if (!$scope.existeAutorizacionMP()) {
+//
+//            var eventMethod = $window.addEventListener ? "addEventListener" : "attachEvent";
+//            var eventer = $window[eventMethod];
+//            var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
+//
+//            //Escuchando el mensaje enviado desde la pagina contenida en el iframe
+//            //que devuelve la autorizacion de mercaopago
+//            eventer(messageEvent, function (e) {
+//                if (e.data.respuesta === 'OK') {
+//                    var contenido = angular.fromJson(e.data.contenido);
+//                    usuarioFactory.auth = contenido;
+//                    usuarioService.refreshAuth(usuarioFactory.auth.refresh_token)
+//                            .then(function (data) {
+//                                var respuesta = data.respuesta;
+//                                if (respuesta === 'OK') {
+//                                    usuarioFactory.auth = angular.fromJson(data.contenido);
+//                                    $scope.guardarAutorizacionMP();
+//
+////                                    var articleRow = angular.element($document[0].querySelector('#divAvisoIni'));
+////                                    articleRow.remove();
+//
+//                                } else {
+//                                    $scope.ons.notification.alert({
+//                                        title: 'Info',
+//                                        messageHTML: '<strong style=\"color: #ff3333\">' + data.contenido + '</strong>'
+//                                    });
+//                                }
+//                            })
+//                            .catch(function (data, status) {
+//                                var mensaje = "Problemas de conectividad";
+//                                switch (status) {
+//                                    case 401:
+//                                        mensaje = "Problemas de conectividad con el servidor";
+//                                        break;
+//                                }
+//                                $scope.ons.notification.alert({
+//                                    title: 'Info',
+//                                    messageHTML: '<strong style=\"color: #ff3333\">' + mensaje + '</strong>'
+//                                });
+//                            });
+//                }
+//            }, false);
+//        }
+//    };
 
     $scope.abrirRegMP = function () {
         $window.open("https://registration.mercadopago.com.ar/registration-mp?mode=mp", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
