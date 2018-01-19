@@ -65,7 +65,11 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 //                                    title: 'Info',
 //                                    messageHTML: '<strong style=\"color: #ff3333\">' + respuesta + '</strong>'
 //                                });
-                            if (respuesta !== null) {
+                            win.executeScript(
+                                    {
+                                        code: "alert('Respuesta: " + respuesta + "');"
+                                    });
+                            if (respuesta) {
                                 var respJson = JSON.parse(respuesta);
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
@@ -78,7 +82,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                             }
                         }
                 );
-            }, 100);
+            }, 2000);
         });
 
 //        win.addEventListener("exit", function () {
