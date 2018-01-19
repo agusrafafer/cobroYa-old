@@ -56,7 +56,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                 // child browser's localStorage.
                 win.executeScript(
                         {
-                            code: "$localStorage.getItem('responseWs')"
+                            code: "localStorage.getItem('responseWs')"
                         },
                         function (values) {
                             var respuesta = values[0];
@@ -67,7 +67,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                                 $scope.guardarAutorizacionMP();
                                 $scope.ons.notification.alert({
                                     title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">Guardo?</strong>'
+                                    messageHTML: '<strong style=\"color: #ff3333\">' + angular.fromJson(respJson.contenido) + '</strong>'
                                 });
                                 win.close();
                                 clearInterval(loop);
