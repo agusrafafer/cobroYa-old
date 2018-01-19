@@ -1,5 +1,5 @@
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage) {
 
     $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
@@ -42,12 +42,12 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.abrirAutorizacionMP = function () {
-        var win = window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
+        var win = $window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
 
         win.addEventListener("loadstop", function () {
 
             // Clear out the name in localStorage for subsequent opens.
-            win.executeScript({code: "localStorage.setItem( 'responseWs', '' );"});
+            win.executeScript({code: "$localStorage.setItem( 'responseWs', '' );"});
 
             // Start an interval
             var loop = setInterval(function () {
@@ -56,7 +56,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                 // child browser's localStorage.
                 win.executeScript(
                         {
-                            code: "localStorage.getItem( 'responseWs' )"
+                            code: "$localStorage.getItem( 'responseWs' )"
                         },
                         function (values) {
                             var respuesta = values[0];
@@ -337,7 +337,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 ;
 
 
-Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', '$localStorage', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage) {
         ons.ready(function () {
             $scope.db.createTable('authmeli', {
                 "id": {
@@ -376,7 +376,7 @@ Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', '
         });
 
 
-        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce);
+        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage);
     }]);
 
 
