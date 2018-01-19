@@ -56,7 +56,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                 // child browser's localStorage.
                 win.executeScript(
                         {
-                            code: "localStorage.getItem('responseWs');alert('HOLA');"
+                            code: "localStorage.getItem('responseWs');"
                         },
                         function (values) {
                             var respuesta = values[0];
