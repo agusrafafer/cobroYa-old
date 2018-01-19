@@ -44,7 +44,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     $scope.abrirAutorizacionMP = function () {
         var win = $window.open($scope.dml, "_blank", "location=yes,EnableViewPortScale=yes");
 
-        win.addEventListener("loadstop", function () {
+        win.addEventListener("loadstart", function () {
 
             // Clear out the name in localStorage for subsequent opens.
             //win.executeScript({code: "$localStorage.setItem( 'responseWs', '' );"});
@@ -56,11 +56,15 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                 // child browser's localStorage.
                 win.executeScript(
                         {
-                            code: "localStorage.getItem('responseWs')"
+                            code: "localStorage.getItem('responseWs');alert('HOLA');"
                         },
                         function (values) {
                             var respuesta = values[0];
                             // If a response was set, clear the interval and close the InAppBrowser.
+                            $scope.ons.notification.alert({
+                                    title: 'Info',
+                                    messageHTML: '<strong style=\"color: #ff3333\">' + respuesta + '</strong>'
+                                });
                             if (respuesta) {
                                 var respJson = JSON.parse(respuesta);
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
@@ -69,12 +73,12 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                                     title: 'Info',
                                     messageHTML: '<strong style=\"color: #ff3333\">' + angular.fromJson(respJson.contenido) + '</strong>'
                                 });
-                                win.close();
                                 clearInterval(loop);
+                                win.close();
                             }
                         }
                 );
-            });
+            }, 100);
         });
 
 //        win.addEventListener("exit", function () {
