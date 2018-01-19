@@ -65,20 +65,21 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 //                                    title: 'Info',
 //                                    messageHTML: '<strong style=\"color: #ff3333\">' + respuesta + '</strong>'
 //                                });
-                            win.executeScript(
-                                    {
-                                        code: "alert('Respuesta: " + respuesta + "');"
-                                    });
+//                            win.executeScript(
+//                                    {
+//                                        code: "alert('Respuesta: " + respuesta + "');"
+//                                    });
                             if (respuesta) {
                                 var respJson = JSON.parse(respuesta);
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
-                                $scope.ons.notification.alert({
-                                    title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">' + angular.fromJson(respJson.contenido) + '</strong>'
-                                });
+//                                $scope.ons.notification.alert({
+//                                    title: 'Info',
+//                                    messageHTML: '<strong style=\"color: #ff3333\">' + angular.fromJson(respJson.contenido) + '</strong>'
+//                                });
                                 clearInterval(loop);
                                 win.close();
+                                $scope.app.navigator.pushPage("main.html");
                             }
                         }
                 );
