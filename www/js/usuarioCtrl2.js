@@ -61,11 +61,11 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
                         function (values) {
                             var respuesta = values[0];
                             // If a response was set, clear the interval and close the InAppBrowser.
-                            $scope.ons.notification.alert({
-                                    title: 'Info',
-                                    messageHTML: '<strong style=\"color: #ff3333\">' + respuesta + '</strong>'
-                                });
-                            if (respuesta) {
+//                            $scope.ons.notification.alert({
+//                                    title: 'Info',
+//                                    messageHTML: '<strong style=\"color: #ff3333\">' + respuesta + '</strong>'
+//                                });
+                            if (respuesta !== null) {
                                 var respJson = JSON.parse(respuesta);
                                 usuarioFactory.auth = angular.fromJson(respJson.contenido);
                                 $scope.guardarAutorizacionMP();
