@@ -42,7 +42,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
     };
 
     $scope.abrirAutorizacionMP = function () {
-        var win = $window.open($scope.dml, "_blank", "location=yes,EnableViewPortScale=yes");
+        var win = $window.open($scope.dml, "_blank", "location=no,EnableViewPortScale=yes");
 
         win.addEventListener("loadstart", function () {
 
