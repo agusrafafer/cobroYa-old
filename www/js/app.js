@@ -17,12 +17,13 @@ Onsen.config(['$httpProvider', '$cordovaNgCardIOProvider', function ($httpProvid
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
         $cordovaNgCardIOProvider.setScanerConfig(
                 {
-                    "expiry": true,
-                    "cvv": true,
+                    "expiry": false,
+                    "cvv": false,
                     "zip": false,
-                    "suppressManual": false,
+                    "suppressManual": true,
                     "suppressConfirm": false,
-                    "hideLogo": true
+                    "hideLogo": true,
+                    "scanInstructions": "Coloque la tarjeta en el recuadro verde y aguarde el escaneo"
                 }
         );
         $cordovaNgCardIOProvider.setCardIOResponseFields(
