@@ -26,7 +26,7 @@
     <preference name="fullscreen" value="false" /> 
     <preference name="android-windowSoftInputMode" value="adjustResize|stateHidden" />
     <preference name="orientation" value="portrait" />
-    <preference name="android-minSdkVersion" value="21" />
+    <preference name="android-minSdkVersion" value="14" />
     <allow-navigation href="http://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -55,7 +55,8 @@
     <plugin name="cordova-plugin-splashscreen" source="npm"/>
     <!--<plugin spec="https://github.com/vkeepe/card.io.git" source="git" />-->
     <!--<gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.6.3" />-->
-    <plugin spec="https://github.com/card-io/card.io-Cordova-Plugin" source="git" />
+    <plugin spec="https://github.com/card-io/card.io-Cordova-Plugin#95011ec" source="git"/>
+
     
     
     
