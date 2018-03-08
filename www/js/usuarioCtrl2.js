@@ -342,28 +342,64 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
         });
     };
 
+//    $scope.scanTarjeta = function () {
+//        $cordovaNgCardIO.scanCard()
+//                .then(function (response) {
+//                    //Success response - it`s an object with card data
+//                    var datoTarjeta = response;
+//                    
+//                    $scope.ons.notification.alert({
+//                        title: 'Info',
+//                        messageHTML: '<strong style=\"color: #ff3333\"> Nro. tarjeta: ' + datoTarjeta.card_number + '</strong>'
+//                    });
+//                },
+//                        function (response) {
+//                            //We will go there only when user cancel a scanning.
+//                            //response always null 
+//                            $scope.ons.notification.alert({
+//                                title: 'Info',
+//                                messageHTML: '<strong style=\"color: #ff3333\">Scaneo cancelado</strong>'
+//                            });
+//                        }
+//                );
+//    };
+
     $scope.scanTarjeta = function () {
-        $cordovaNgCardIO.scanCard()
-                .then(function (response) {
-                    //Success response - it`s an object with card data
-                    var datoTarjeta = response;
-                    
-                    $scope.ons.notification.alert({
-                        title: 'Info',
-                        messageHTML: '<strong style=\"color: #ff3333\"> Nro. tarjeta: ' + datoTarjeta.card_number + '</strong>'
-                    });
-                },
-                        function (response) {
-                            //We will go there only when user cancel a scanning.
-                            //response always null 
-                            $scope.ons.notification.alert({
-                                title: 'Info',
-                                messageHTML: '<strong style=\"color: #ff3333\">Scaneo cancelado</strong>'
-                            });
-                        }
-                );
+        cordova.CardIO.scan({
+            "requireExpiry": true,
+            "scanExpiry": true,
+            "requirePostalCode": true,
+            "restrictPostalCodeToNumericOnly": true,
+            "hideCardIOLogo": true,
+            "suppressScan": false,
+            "keepApplicationTheme": true
+        }, onCardIOComplete, onCardIOCancel);
     };
 
+    function onCardIOComplete(response) {
+        var cardIOResponseFields = [
+            "cardType",
+            "redactedCardNumber",
+            "cardNumber",
+            "expiryMonth",
+            "expiryYear",
+            "cvv",
+            "postalCode"
+        ];
+
+        var len = cardIOResponseFields.length;
+        alert("card.io scan complete");
+        for (var i = 0; i < len; i++) {
+            var field = cardIOResponseFields[i];
+            alert(field + ": " + response[field]);
+        }
+    }
+    ;
+
+    function onCardIOCancel() {
+        alert("card.io scan cancelled");
+    }
+    ;
 
 }
 ;
@@ -409,7 +445,8 @@ Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', '
 
 
         usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage, $cordovaNgCardIO);
-    }]);
+    }
+]);
 
 
 
