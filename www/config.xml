@@ -15,7 +15,7 @@
     </author>
     <access origin="*"/>
     <content src="index.html" />
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
+    <plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
     <preference name="permissions" value="none" />
     <preference name="KeepRunning" value="true" /> 
     <preference name="exit-on-suspend" value="false" /> 
@@ -26,6 +26,7 @@
     <preference name="fullscreen" value="false" /> 
     <preference name="android-windowSoftInputMode" value="adjustResize|stateHidden" />
     <preference name="orientation" value="portrait" />
+    <preference name="android-minSdkVersion" value="21" />
     <allow-navigation href="http://*/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
