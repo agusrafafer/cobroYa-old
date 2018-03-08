@@ -15,28 +15,28 @@ Onsen.config(['$httpProvider', '$cordovaNgCardIOProvider', function ($httpProvid
         // http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        $cordovaNgCardIOProvider.setScanerConfig(
-                {
-                    "expiry": false,
-                    "cvv": false,
-                    "zip": false,
-                    "suppressManual": false,
-                    "suppressConfirm": true,
-                    "hideLogo": true
-                }
-        );
-        $cordovaNgCardIOProvider.setCardIOResponseFields(
-                [
-                    "card_type",
-                    "redacted_card_number",
-                    "card_number",
-                    "expiry_month",
-                    "expiry_year",
-                    "short_expiry_year",
-                    "cvv",
-                    "zip"
-                ]
-                );
+//        $cordovaNgCardIOProvider.setScanerConfig(
+//                {
+//                    "expiry": false,
+//                    "cvv": false,
+//                    "zip": false,
+//                    "suppressManual": false,
+//                    "suppressConfirm": false,
+//                    "hideLogo": true
+//                }
+//        );
+//        $cordovaNgCardIOProvider.setCardIOResponseFields(
+//                [
+//                    "card_type",
+//                    "redacted_card_number",
+//                    "card_number",
+//                    "expiry_month",
+//                    "expiry_year",
+//                    "short_expiry_year",
+//                    "cvv",
+//                    "zip"
+//                ]
+//                );
     }]);
 
 
