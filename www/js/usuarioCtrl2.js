@@ -1,5 +1,5 @@
 //El controlador de usuarios
-function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage, $cordovaNgCardIO) {
+function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage) {
 
     $scope.db = $webSql.openDatabase('dbmeliauth', '1.0', 'dbmeliauth', 2 * 1024 * 1024);
 
@@ -405,7 +405,7 @@ function usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $wind
 ;
 
 
-Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', '$localStorage', '$cordovaNgCardIO', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage, $cordovaNgCardIO) {
+Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', 'cobroFactory', '$window', '$webSql', '$sce', '$localStorage', function ($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage) {
         ons.ready(function () {
             $scope.db.createTable('authmeli', {
                 "id": {
@@ -444,7 +444,7 @@ Onsen.controller('usuarioCtrl', ['$scope', 'usuarioService', 'usuarioFactory', '
         });
 
 
-        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage, $cordovaNgCardIO);
+        usuarioCtrl($scope, usuarioService, usuarioFactory, cobroFactory, $window, $webSql, $sce, $localStorage);
     }
 ]);
 
