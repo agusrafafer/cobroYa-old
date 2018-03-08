@@ -33,6 +33,13 @@
             <i class="fa ion-help-circled fa-lg" style="color: #666"></i>
             &nbsp; Ayuda
         </ons-list-item>
+        
+        <ons-list-item ng-controller="usuarioCtrl"
+                       modifier="tappable" class="list__item__line-height"
+                       ng-click="app.slidingMenu.close();scanTarjeta()">
+            <i class="fa ion-log-out fa-lg" style="color: #666"></i>
+            &nbsp; Escanear Tarjeta
+        </ons-list-item>
 
         <ons-list-item ng-controller="usuarioCtrl"
                        modifier="tappable" class="list__item__line-height"
